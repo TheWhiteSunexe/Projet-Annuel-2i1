@@ -1,0 +1,41 @@
+.dark-gradient-section{
+  background: linear-gradient(261.61deg, #3D405B 0%, #292A35 100%);
+  padding-top: 100px;
+  padding-bottom: 150px;
+}
+
+.btn-round{
+  border-radius: 15px !important;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.form-round input{
+  background-color: #efefef;
+  border-radius: 15px;
+  border: none;
+}
+
+.visual {
+  display: none;
+  width: inherit;
+}
+
+.btn-primary {
+  background-color: #3D405B; !important;
+  border-color: #3D405B; !important;
+}
+
+.btn-danger {
+  background-color: #E07A5F; !important;
+  border-color: #E07A5F; !important;
+}
+
+.btn-success {
+  background-color: #81B29A; !important;
+  border-color: #81B29A; !important;
+}

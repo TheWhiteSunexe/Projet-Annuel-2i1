@@ -1,0 +1,25 @@
+
+img{
+  /*display: none;*/
+  width: inherit;
+}
+
+#heroBanner-login input{
+  background-color: #EBF2FA;
+  border-radius: 15px;
+  border: none;
+}
+#heroBanner-login{
+  background-color: #EBF2FA;
+  border-radius: 15px;
+  border: none;
+}
+
+#signup-links .btn{padding: 0px;}
+#signup-links .input-group-text{
+  width: 250px;
+}
+
+.jumbotron {
+  margin-top: 2rem;
+}
