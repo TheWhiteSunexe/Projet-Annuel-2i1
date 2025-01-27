@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/styles/bootstrap-4.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/styles/main.css">
-    <link rel="stylesheet" href="assets/styles/header.css">
-    <link rel="stylesheet" href="assets/styles/login.css">
+    <link rel="stylesheet" href="../assets/styles/bootstrap-4.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/styles/main.css">
+    <link rel="stylesheet" href="../assets/styles/header.css">
+    <link rel="stylesheet" href="../assets/styles/login.css">
     
     <title>Business Care</title>
-      <link rel="icon" type="image/png" href="assets/images/logoSmall.png">
+      <link rel="icon" type="image/png" href="../assets/images/logoSmall.png">
   </head>
   <!-- BODY -->
   <body>
@@ -25,7 +25,7 @@
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
                 <a class="navbar-brand" href="login.php">
-                <img width="40" height="40" src="assets/images/logoSmall.png" alt="Small Logo">
+                <img width="40" height="40" src="../assets/images/logoSmall.png" alt="Small Logo">
 
                     Business Care</a>
 
@@ -34,8 +34,31 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <!-- Links -->
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="aaaa">À propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/download">Télécharger</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/prices">Tarifs</a>
+                        </li>
 
-                <a href="aaaa"><button class="btn btn-round btn-success my-2 my-sm-0">Se connecter</button></a>
+
+                        <!-- Dropdown Language-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="aaaa" id="navbardrop" data-toggle="dropdown">Langue</a>
+                            <div class="dropdown-menu">
+                              <button class="dropdown-item" onclick="language(&#39;FR&#39;)">🇫🇷 FR</button>
+                              <button class="dropdown-item" onclick="language(&#39;EN&#39;)">🇬🇧 EN</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <a href="login.php"><button class="btn btn-round btn-success my-2 my-sm-0">Se connecter</button></a>
           </nav>
         </div>
       </header>
@@ -166,6 +189,6 @@
 
 </section>
     </main>
-    <script src="api/ApiHelpers.js"></script>
+    <script src="../api/ApiHelpers.js"></script>
     <!--<script src="./QuickBaluchon_files/login.js.télécharger"></script> -->
 </body></html>
