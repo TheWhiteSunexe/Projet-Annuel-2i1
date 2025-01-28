@@ -44,17 +44,55 @@ function validateToken($token) {
 
 function findUsersByCredentials($username, $password) {
     $connection = getDatabaseConnection();
-    $sql = "SELECT id FROM users WHERE username = :username AND password = :password";
+
+    // Requête SQL pour récupérer toutes les informations utiles de l'utilisateur
+    $sql = "
+        SELECT 
+            id, 
+            username, 
+            id_clients,
+            id_providers,
+            id_admin,
+            expiration
+        FROM users
+        WHERE username = :username AND password = :password
+    ";
+
     $query = $connection->prepare($sql);
+
+    // Exécuter la requête avec les paramètres sécurisés
     $res = $query->execute([
         'username' => $username,
         'password' => $password
     ]);
-    if ($res) {
-        return $query->fetch(PDO::FETCH_ASSOC);
+
+    // Si un utilisateur est trouvé
+    if ($res && $user = $query->fetch(PDO::FETCH_ASSOC)) {
+
+        if ($user['id_clients'] == NULL && $user['id_providers'] == NULL){
+            $user['role'] = "admin";
+        }
+        if ($user['id_clients'] == NULL && $user['id_admin'] == NULL){
+            $user['role'] = "providers";
+        }
+        if ($user['id_providers'] == NULL && $user['id_admin'] == NULL){
+            $user['role'] = "clients";
+        }
+        // Démarrer ou récupérer la session
+        session_start();
+
+        // Stocker les informations importantes dans la session
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['expiration'] = $user['expiration'];
+        $_SESSION['role'] = $user['role'];
+
+        return $user; // Retourne les informations de l'utilisateur
     }
-    return null;
+
+    return null; // Retourne null si l'utilisateur n'existe pas
 }
+
 
 
 /*function findOneViking(string $id) {

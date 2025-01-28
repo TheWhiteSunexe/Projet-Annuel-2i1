@@ -145,7 +145,7 @@
 
       <!-- IMAGE 
       <div class="col-lg">
-        <img class="d-lg-block mx-auto" src="./QuickBaluchon_files/truck.png" alt="package">
+        <img class="d-lg-block mx-auto" src="" alt="package">
       </div>-->
 
       <!-- LINKS -->
@@ -190,5 +190,5 @@
 </section>
     </main>
     <script src="../api/ApiHelpers.js"></script>
-    <!--<script src="./QuickBaluchon_files/login.js.télécharger"></script> -->
-</body></html>
+</body>
+</html>

@@ -24,7 +24,7 @@ function loginToApi(event) {
       if (data.error) {
         document.getElementById('wrong').innerText = data.error;
       } else {
-        window.location.href = '/index.php'; 
+        window.location.href = 'http://localhost/Projet-Annuel-2i1/PA2i1/index.php';
       }
     })
     .catch(error => {
