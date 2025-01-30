@@ -64,10 +64,12 @@ $_SESSION['username'] = $users['username'];
 $_SESSION['name'] = $users['name'];
 $_SESSION['firstname'] = $users['firstname'];
 $_SESSION['role'] = $user['role'];
+$_SESSION['id'] = $users['id'];
 
 returnSuccess([
     'token' => $tokenHashed,
     'role' => $user['role'], 
+    'id' => $users['id'],
     'username' => $users['username'],
     'name' => $users['name'],
     'firstname' => $users['firstname'],

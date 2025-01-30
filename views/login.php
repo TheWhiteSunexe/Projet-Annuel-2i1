@@ -2,13 +2,8 @@
 <html lang="fr">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <!-- Required meta tags -->
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/styles/bootstrap-4.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/styles/main.css">
     <link rel="stylesheet" href="../assets/styles/header.css">
@@ -17,10 +12,8 @@
     <title>Business Care</title>
       <link rel="icon" type="image/png" href="../assets/images/logoSmall.png">
   </head>
-  <!-- BODY -->
   <body>
 
-    <!-- HEADER -->
       <header>
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -29,12 +22,10 @@
 
                     Business Care</a>
 
-                <!-- Collapse button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Links -->
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -46,9 +37,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/prices">Tarifs</a>
                         </li>
-
-
-                        <!-- Dropdown Language-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="aaaa" id="navbardrop" data-toggle="dropdown">Langue</a>
                             <div class="dropdown-menu">
@@ -62,23 +50,19 @@
           </nav>
         </div>
       </header>
-    <!-- MAIN -->
     <main>
       
-<!-- HERO BANNER LOGIN -->
 <section id="heroBanner-login">
   <div class="container-xl">
     <div class="row">
       <div class="col-lg">
 
-        <!-- FORM LOGIN-->
         <div class="jumbotron bg-white">
           <h1 class="display-4">Votre <br> espace<br></h1>
 
           <form onsubmit="loginToApi(event)">
             <div class="form-group row">
               <div class="col-sm-10">
-                <!-- Champ email ou nom d'utilisateur -->
                 <input 
                   type="text" 
                   class="form-control" 
@@ -91,7 +75,6 @@
 
             <div class="form-group row">
               <div class="col-sm-10">
-                <!-- Champ mot de passe -->
                 <input 
                   type="password" 
                   class="form-control" 
@@ -104,7 +87,6 @@
 
             <div class="form-group row">
               <div class="col-sm-10">
-                <!-- Bouton de soumission -->
                 <button 
                   type="submit" 
                   class="btn btn-round" 
@@ -114,14 +96,12 @@
               </div>
             </div>
 
-            <!-- Affichage des erreurs -->
             <div id="wrong" style="color: red; margin-top: 10px;"></div>
 
             <div class="form-group row">
               <div class="col-sm-10">
-                <!-- Lien mot de passe oublié -->
                 <small class="form-text text-muted">
-                  <a href="aaaa">Vous avez oublié votre mot de passe ?</a>
+                  <a href="reset.php">Vous avez oublié votre mot de passe ?</a>
                 </small>
               </div>
             </div>
@@ -137,18 +117,15 @@
   </div>
 </section>
 
-
-<!-- SECTION SIGN UP -->
 <section id="signup-links" style="background-color: #679436;">
   <div class="container-xl">
     <div class="row">
 
-      <!-- IMAGE 
+      <!--
       <div class="col-lg">
         <img class="d-lg-block mx-auto" src="" alt="package">
       </div>-->
 
-      <!-- LINKS -->
       <div class="col-lg" >
         <div class="jumbotron bg-transparent">
           <h1 class="display-4 text-white">Je m'inscris !</h1>

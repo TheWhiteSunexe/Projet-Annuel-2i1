@@ -11,19 +11,19 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="contracts.php">Services</a>
+                            <a class="nav-link" href="calendar.php">Agenda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="stripe.php">Chatbot</a>
+                            <a class="nav-link" href="chatbot.php">Chatbot</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="employeesManagment.php">Conseils</a>
+                            <a class="nav-link" href="advice.php">Conseils</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="devis.php">Associations & Gestion</a>
+                            <a class="nav-link" href="teams.php">Associations & Gestion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="devis.php">Communautés</a>
+                            <a class="nav-link" href="forum.php">Communautés</a>
                         </li>
                         
                     </ul>

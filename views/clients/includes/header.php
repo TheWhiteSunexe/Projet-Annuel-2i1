@@ -17,7 +17,7 @@
                             <a class="nav-link" href="stripe.php">Prélèvement</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="employeesManagment.php">Employés</a>
+                            <a class="nav-link" href="employees.php">Employés</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="devis.php">Devis</a>
