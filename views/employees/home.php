@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 use Middleware\AuthMiddleware;
 use Controllers\AuthController;
-if (!AuthMiddleware::checkAccess('admin')) {
+if (!AuthMiddleware::checkAccess('employees')) {
     header('Location: /Projet-Annuel-2i1/PA2i1/views/login.php');
     exit();
 }
@@ -22,12 +22,14 @@ if (!AuthMiddleware::checkAccess('admin')) {
 <!DOCTYPE html>
 <html lang="fr">
 
+<head>
+
     <? include('../includes/head.php'); ?>
 
-  <body>
+    <body>
 
         <? include('includes/header.php'); ?>
-      
+        
         <main>
             <section id="heroBanner-login">
                 <div class="container-xl">

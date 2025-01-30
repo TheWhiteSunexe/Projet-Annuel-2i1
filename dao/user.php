@@ -44,12 +44,12 @@ function validateToken($token) {
 
 function findUsersByCredentials($username, $password) {
     $connection = getDatabaseConnection();
-
-    // Requête SQL pour récupérer toutes les informations utiles de l'utilisateur
     $sql = "
         SELECT 
             id, 
             username, 
+            name,
+            firstname,
             id_clients,
             id_providers,
             id_admin,
@@ -59,38 +59,35 @@ function findUsersByCredentials($username, $password) {
     ";
 
     $query = $connection->prepare($sql);
-
-    // Exécuter la requête avec les paramètres sécurisés
     $res = $query->execute([
         'username' => $username,
         'password' => $password
     ]);
 
-    // Si un utilisateur est trouvé
     if ($res && $user = $query->fetch(PDO::FETCH_ASSOC)) {
 
-        if ($user['id_clients'] == NULL && $user['id_providers'] == NULL){
-            $user['role'] = "admin";
-        }
-        if ($user['id_clients'] == NULL && $user['id_admin'] == NULL){
-            $user['role'] = "providers";
-        }
-        if ($user['id_providers'] == NULL && $user['id_admin'] == NULL){
-            $user['role'] = "clients";
-        }
-        // Démarrer ou récupérer la session
-        session_start();
+        // if ($user['id_clients'] == NULL && $user['id_providers'] == NULL){
+        //     $user['role'] = "admin";
+        // }
+        // if ($user['id_clients'] == NULL && $user['id_admin'] == NULL){
+        //     $user['role'] = "providers";
+        // }
+        // if ($user['id_providers'] == NULL && $user['id_admin'] == NULL){
+        //     $user['role'] = "clients";
+        // }
+        // // Démarrer ou récupérer la session
+        // session_start();
 
-        // Stocker les informations importantes dans la session
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['expiration'] = $user['expiration'];
-        $_SESSION['role'] = $user['role'];
+        // // Stocker les informations importantes dans la session
+        // $_SESSION['user_id'] = $user['id'];
+        // $_SESSION['username'] = $user['username'];
+        // $_SESSION['expiration'] = $user['expiration'];
+        // $_SESSION['role'] = $user['role'];
 
-        return $user; // Retourne les informations de l'utilisateur
+        return $user;
     }
 
-    return null; // Retourne null si l'utilisateur n'existe pas
+    return null;
 }
 
 
@@ -189,7 +186,6 @@ function weaponExists(int $weaponId) {
 function updateUsers(string $id, string $name, int $health, int $attack, int $defense, int $weaponId) {
     $db = getDatabaseConnection();
 
-    // Mise à jour des informations du viking
     $sql = "UPDATE viking SET name = :name, health = :health, attack = :attack, defense = :defense, weaponId = :weaponId WHERE id = :id";
     $stmt = $db->prepare($sql);
     $res = $stmt->execute([

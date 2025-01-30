@@ -24,7 +24,23 @@ function loginToApi(event) {
       if (data.error) {
         document.getElementById('wrong').innerText = data.error;
       } else {
-        window.location.href = 'http://localhost/Projet-Annuel-2i1/PA2i1/index.php';
+        switch (data.role) {
+          case 'admin':
+            window.location.href = '/Projet-Annuel-2i1/PA2i1/views/admin/home.php';
+            break;
+          case 'clients':
+            window.location.href = '/Projet-Annuel-2i1/PA2i1/views/clients/home.php';
+            break;
+          case 'employees':
+            window.location.href = '/Projet-Annuel-2i1/PA2i1/views/employees/home.php';
+            break;
+          case 'providers':
+            window.location.href = '/Projet-Annuel-2i1/PA2i1/views/providers/home.php';
+            break;
+          
+          default:
+            window.location.href = '/Projet-Annuel-2i1/PA2i1/views/index.php';
+        }
       }
     })
     .catch(error => {

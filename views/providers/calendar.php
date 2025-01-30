@@ -1,8 +1,21 @@
-<?php session_start(); 
-/*if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
-    header('location: index.php');
-    exit;
-}*/?>
+<?php
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/middlewares/AuthMiddleware.php';  
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/models/UserModel.php'; 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/Controllers/AuthController.php'; 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/routes/web.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+use Middleware\AuthMiddleware;
+use Controllers\AuthController;
+if (!AuthMiddleware::checkAccess('providers')) {
+    header('Location: /Projet-Annuel-2i1/PA2i1/views/login.php');
+    exit();
+}
+
+// $router->dispatch();?>
 <!DOCTYPE HTML>
 <html>
 
@@ -62,8 +75,6 @@
     <?php
 include('includes/db.php');
 
-
-// Préparer la commande SQL pour récupérer les id_evenement réservés par l'utilisateur
 $sql = "SELECT id_evenement FROM reserve WHERE id_user = :id_user";
 $req = $bdd->prepare($sql);
 $req->execute([
@@ -71,20 +82,14 @@ $req->execute([
 ]);
 $inscris = $req->fetchAll(PDO::FETCH_COLUMN, 0);
 
-// Vérifier s'il y a des événements inscrits
 if (!empty($inscris)) {
-    // Convertir le tableau d'IDs en une chaîne de caractères séparée par des virgules
     $ids = implode(',', array_map('intval', $inscris));
 
-    // Préparer la commande SQL pour récupérer les détails des événements
     $sql = "SELECT titre AS title, date AS start_date, TIME_FORMAT(heure_debut, '%H:%i') AS heure_debut, TIME_FORMAT(heure_fin, '%H:%i') AS heure_fin FROM evenement WHERE id IN ($ids)";
     $stmt = $bdd->prepare($sql);
     $stmt->execute();
 
-    // Récupérer tous les événements
     $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Transformer les dates et heures en format correct pour FullCalendar
     foreach ($events as &$event) {
         $event['start'] = $event['start_date'] . 'T' . date("H:i", strtotime($event['heure_debut']));
         $event['end'] = $event['start_date'] . 'T' . date("H:i", strtotime($event['heure_fin']));
@@ -94,7 +99,6 @@ if (!empty($inscris)) {
     $events = [];
 }
 
-// Convertir les événements en JSON
 $events_json = json_encode($events);
 ?>
     <script>
@@ -105,8 +109,8 @@ $events_json = json_encode($events);
                 plugins: [ 'interaction', 'dayGrid' ],
                 defaultDate: '2024-05-21',
                 editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: <?php echo $events_json; ?> // Injecter les événements ici
+                eventLimit: true,
+                events: <?php echo $events_json; ?>
             });
 
             calendar.render();

@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 use Middleware\AuthMiddleware;
 use Controllers\AuthController;
-if (!AuthMiddleware::checkAccess('admin')) {
+if (!AuthMiddleware::checkAccess('clients')) {
     header('Location: /Projet-Annuel-2i1/PA2i1/views/login.php');
     exit();
 }
@@ -24,10 +24,10 @@ if (!AuthMiddleware::checkAccess('admin')) {
 
     <? include('../includes/head.php'); ?>
 
-  <body>
-
+    <body>
+        
         <? include('includes/header.php'); ?>
-      
+    
         <main>
             <section id="heroBanner-login">
                 <div class="container-xl">
@@ -35,7 +35,7 @@ if (!AuthMiddleware::checkAccess('admin')) {
                     <div class="col-lg">
                         <div class="jumbotron bg-white">
                         <h1 class="display-4">Bienvenue <br> <?echo $_SESSION['firstname'];?>&nbsp<? echo $_SESSION['name'] ?></h1>
-                        <h4 class="display-4">Vous êtes connectés en tant qu' <?echo $_SESSION['role'];?></h4>
+                        <h4 class="display-4">Vous êtes connectés en tant que <?echo $_SESSION['role'];?></h4>
                         </div>
 
                     </div>

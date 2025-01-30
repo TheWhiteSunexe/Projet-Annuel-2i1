@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/tpApi/VikingsAPI/api/utils/server.php';
-
+//Inutile pour le moment (ancien projet)
 function verifyViking($viking): bool {
     $name = trim($viking['name']);
     if (strlen($name) < 3) {
