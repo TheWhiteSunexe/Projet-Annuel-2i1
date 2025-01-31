@@ -1,7 +1,7 @@
 <header>
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand" href="login.php">
+                <a class="navbar-brand" href="home.php">
                 <img width="40" height="40" src="../../assets/images/logoSmall.png" alt="Small Logo">
                     Business Care</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
