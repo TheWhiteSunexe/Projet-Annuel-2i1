@@ -30,35 +30,23 @@ if (!AuthMiddleware::checkAccess('clients')) {
         <div>
                        
             <div id="result">
-            <table class="table table-striped mt-4">
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-                
-                <?php
-                foreach ($users as $user) {
-                    echo '<tr>';
-                    echo '<td>' . $user['id'] . '</td>';
-                    echo '<td>' . $user['nom'] . '</td>';
-                    echo '<td>' . $user['prenom'] . '</td>';
-                    echo '<td>' . $user['email'] . '</td>';
-                    echo '<td>
-                        <a class="btn btn-primary btn-sm" href="../edit.php?id=' . $user['id'] . '">Modifier</a>
-                        <a class="btn btn-danger btn-sm" href="../delete.php?id=' . $user['id'] . '">Supprimer</a>
-                        </td>';                    
-                    echo '</tr>';
-                }
-                ?>
-                </tbody>
-            </table>
-
+                <table class="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeesTableBody">
+                    </tbody>
+                </table>
+            </div>
         </div>
   </main>
 
 </body>
-
+<script src="script/employees.js"></script>
 </html>

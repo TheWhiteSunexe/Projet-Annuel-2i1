@@ -7,7 +7,7 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/dao/contractDAO.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/dao/EmployeesDAO.php';
 $id = $_SESSION['id'];
-$contracts = ContractDAO::getAllContracts($id);
-echo json_encode($contracts);
+$employees = employeesDAO::getAllEmployees($id);
+echo json_encode($employees);
