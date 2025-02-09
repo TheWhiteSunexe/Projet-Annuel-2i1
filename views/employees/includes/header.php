@@ -23,6 +23,9 @@
                             <a class="nav-link" href="teams.php">Associations & Gestion</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="event.php">Evènements</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="forum.php">Communautés</a>
                         </li>
                         

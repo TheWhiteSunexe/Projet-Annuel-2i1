@@ -7,7 +7,7 @@ class EmployeesDAO {
         try {
             $db = getDatabaseConnection();
             $query = "
-            SELECT u.id, u.name, u.firstname 
+            SELECT u.id, u.name, u.firstname, u.email
             FROM users u
             INNER JOIN employees e ON u.id = e.id_employees
             INNER JOIN clients c ON c.id = e.id_enterprise 
