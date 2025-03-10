@@ -1,8 +1,8 @@
 <?php
 
-function returnError ($code, $message) {
-    echo json_encode(["error" => $message]);
+function returnError($code, $message) {
     http_response_code($code);
+    echo json_encode(["error" => $message]);
     die();
 }
 

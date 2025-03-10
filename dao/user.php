@@ -53,7 +53,9 @@ function findUsersByCredentials($username, $password) {
             id_clients,
             id_providers,
             id_admin,
-            expiration
+            id_employees,
+            expiration,
+            active
         FROM users
         WHERE username = :username AND password = :password
     ";

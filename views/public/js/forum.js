@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(topics => {
             let forumContainer = document.getElementById('forum-container');
-            forumContainer.innerHTML = ""; // Vider le contenu initial
+            forumContainer.innerHTML = ""; 
 
             if (topics.length === 0) {
                 forumContainer.innerHTML = "<p>Aucun sujet disponible.</p>";
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="row align-items-center py-3 px-3">
                         <div class="col-md-8">
                             <h5>
-                                <a href="message.php?id=${topic.message_id}" class="text-primary">${topic.titre}</a>
+                                <a href="forumChat.php?id=${topic.message_id}" class="text-primary">${topic.titre}</a>
                             </h5>
                             <p class="text-sm">
                                 <span class="op-6">Posté le</span> 
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(messages => {
             let messagesContainer = document.getElementById('messages-container');
-            messagesContainer.innerHTML = ""; // Vider le contenu initial
+            messagesContainer.innerHTML = ""; 
 
             if (messages.length === 0) {
                 messagesContainer.innerHTML = "<p>Aucun message trouvé.</p>";
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(stats => {
             let statsContainer = document.getElementById('stats-container');
-            statsContainer.innerHTML = ""; // Vider le contenu initial
+            statsContainer.innerHTML = ""; 
 
             statsContainer.innerHTML = `
                         <div class="row text-center d-flex flex-row op-7 mx-0">

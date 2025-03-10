@@ -5,21 +5,23 @@ img{
 }
 
 #heroBanner-login input{
-  background-color: #EBF2FA;
-  border-radius: 15px;
-  border: none;
+  background-color: #EBF2FA!important;
+  border-radius: 15px!important;
+  border: none!important;
 }
 #heroBanner-login{
-  background-color: #EBF2FA;
-  border-radius: 15px;
-  border: none;
+  background-color: #EBF2FA!important;
+  border-radius: 15px!important;
+  border: none!important;
+  
+  height: 650px!important;
 }
 
 #signup-links .btn{padding: 0px;}
 #signup-links .input-group-text{
-  width: 250px;
+  width: 250px!important;
 }
 
 .jumbotron {
-  margin-top: 2rem;
+  margin-top: 2rem!important;
 }

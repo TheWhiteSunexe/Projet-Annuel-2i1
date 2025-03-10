@@ -8,13 +8,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/utils/stringU
 header("Content-Type: application/json");
 
 if (!methodIsAllowed('login')) {
-    returnError(405, 'Method not allowed');
+    http_response_code(405);
+    echo json_encode(['error' => 'Method not allowed']);
+    exit;
 }
 
 $data = getBody();
-
 if (!verifyMandatoryParams($data, ['username', 'password'])) {
-    returnError(400, 'Mandatory parameters: username, password');
+    http_response_code(400);
+    echo json_encode(['error' => 'Mandatory parameters: username, password']);
+    exit;
 }
 
 $username = trim($data['username']);
@@ -23,7 +26,15 @@ $passwordHashed = hash('sha512', $password);
 
 $users = findUsersByCredentials($username, $passwordHashed);
 if (!$users) {
-    returnError(401, 'Invalid credentials');
+    http_response_code(401);
+    echo json_encode(['error' => 'Identifiants invalides']);
+    exit;
+}
+
+if (isset($users['active']) && $users['active'] == 0) {
+    http_response_code(403);
+    echo json_encode(['error' => 'Votre compte a été suspendu. Veuillez contacter l’administrateur.']);
+    exit;
 }
 
 $usersId = $users['id'];
@@ -32,28 +43,18 @@ $tokenHashed = hash('md5', $token);
 
 $res = setUsersSession($usersId, $tokenHashed);
 if (!$res) {
-    returnError(500, 'An error has occurred');
+    http_response_code(500);
+    echo json_encode(['error' => 'Une erreur interne est survenue.']);
+    exit;
 }
 
-// if (!isset($users['id_clients']) && !isset($users['id_providers']) && !isset($users['id_admin'])) {
-//     $users['role'] = 'employees'; 
-// } elseif (!isset($users['id_clients']) && !isset($users['id_providers'])) {
-//     $users['role'] = 'admin';
-// } elseif (!isset($users['id_clients']) && !isset($users['id_admin'])) {
-//     $users['role'] = 'providers';
-// } elseif (!isset($users['id_providers']) && !isset($users['id_admin'])) {
-//     $users['role'] = 'clients';
-// } else {
-//     $users['role'] = 'unknown';
-// }
-
-if ( is_null($users['id_clients']) && is_null($users['id_providers']) && is_null($users['id_admin'])) {
+if (!isset($users['id_clients']) && !isset($users['id_providers']) && !isset($users['id_admin']) && isset($users['id_employees'])) {
     $user['role'] = 'employees'; 
-} elseif (is_null($users['id_clients']) && is_null($users['id_providers']) && isset($users['id_admin'])) {
+} elseif (!isset($users['id_clients']) && !isset($users['id_providers']) && !isset($users['id_employees']) && isset($users['id_admin'])) {
     $user['role'] = 'admin';
-} elseif (is_null($users['id_clients']) && is_null($users['id_admin']) && isset($users['id_providers'])) {
+} elseif (!isset($users['id_clients']) && !isset($users['id_admin']) && !isset($users['id_employees']) && isset($users['id_providers'])) {
     $user['role'] = 'providers';
-} elseif (is_null($users['id_providers']) && is_null($users['id_admin']) && isset($users['id_clients'])) {
+} elseif (!isset($users['id_providers']) && !isset($users['id_admin']) && !isset($users['id_employees']) && isset($users['id_clients'])) {
     $user['role'] = 'clients';
 } else {
     $user['role'] = 'unknown';
@@ -66,12 +67,14 @@ $_SESSION['firstname'] = $users['firstname'];
 $_SESSION['role'] = $user['role'];
 $_SESSION['id'] = $users['id'];
 
-returnSuccess([
+echo json_encode([
     'token' => $tokenHashed,
     'role' => $user['role'], 
     'id' => $users['id'],
     'username' => $users['username'],
     'name' => $users['name'],
     'firstname' => $users['firstname'],
-    'date' => date('Y-m-d H:i:s', strtotime('+1 hour'))
+    'date' => date('Y-m-d H:i:s', strtotime('+1 hour')),
+    'active' => $users['active'],
 ]);
+exit;

@@ -36,6 +36,7 @@ if (!AuthMiddleware::checkAccess('admin')) {
                         <div class="jumbotron bg-white">
                         <h1 class="display-4">Bienvenue <br> <?echo $_SESSION['firstname'];?>&nbsp<? echo $_SESSION['name'] ?></h1>
                         <h4 class="display-4">Vous êtes connectés en tant qu' <?echo $_SESSION['role'];?></h4>
+                        
                         </div>
 
                     </div>
