@@ -67,31 +67,25 @@ function findUsersByCredentials($username, $password) {
     ]);
 
     if ($res && $user = $query->fetch(PDO::FETCH_ASSOC)) {
-
-        // if ($user['id_clients'] == NULL && $user['id_providers'] == NULL){
-        //     $user['role'] = "admin";
-        // }
-        // if ($user['id_clients'] == NULL && $user['id_admin'] == NULL){
-        //     $user['role'] = "providers";
-        // }
-        // if ($user['id_providers'] == NULL && $user['id_admin'] == NULL){
-        //     $user['role'] = "clients";
-        // }
-        // // Démarrer ou récupérer la session
-        // session_start();
-
-        // // Stocker les informations importantes dans la session
-        // $_SESSION['user_id'] = $user['id'];
-        // $_SESSION['username'] = $user['username'];
-        // $_SESSION['expiration'] = $user['expiration'];
-        // $_SESSION['role'] = $user['role'];
-
         return $user;
     }
 
     return null;
 }
 
+function resetPasswordByEmail($email, $Password) {
+    $connection = getDatabaseConnection();
+
+    $sql = "UPDATE users SET password = :password WHERE email = :email";
+    $query = $connection->prepare($sql);
+    
+    $res = $query->execute([
+        'password' => $Password,
+        'email' => $email
+    ]);
+
+    return $res;
+}
 
 
 /*function findOneViking(string $id) {

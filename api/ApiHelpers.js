@@ -43,3 +43,40 @@ function loginToApi(event) {
     document.getElementById('wrong').innerText = 'Erreur lors de la connexion. Essayez à nouveau.';
   });
 }
+
+function resetPassword(event) {
+  event.preventDefault();
+
+  var email = document.getElementById('inputEmail').value;
+  var password1 = document.getElementById('inputPwd').value;
+  var password2 = document.getElementById('inputPwdConfirm').value;
+
+  if (password1 !== password2) {
+    document.getElementById('wrong').innerText = 'Les mots de passe ne correspondent pas.';
+    return;
+  }
+
+  fetch('/Projet-Annuel-2i1/PA2i1/api/ApiResetPassword.php', { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: email,
+      newPassword: password1
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      // document.getElementById('wrong').innerText = 'Mot de passe réinitialisé avec succès.';
+      window.location.href = '/Projet-Annuel-2i1/PA2i1/views/login.php';
+    } else {
+      document.getElementById('wrong').innerText = data.error || 'Erreur inconnue.';
+    }
+  })
+  .catch(error => {
+    console.error('Erreur:', error);
+    document.getElementById('wrong').innerText = 'Erreur lors de la réinitialisation du mot de passe. Essayez à nouveau.';
+  });
+}

@@ -14,7 +14,7 @@ img{
   border-radius: 15px!important;
   border: none!important;
   
-  height: 650px!important;
+  /* height: 650px!important; */
 }
 
 #signup-links .btn{padding: 0px;}

@@ -58,17 +58,17 @@
       <div class="col-lg">
 
         <div class="jumbotron bg-white">
-          <h1 class="display-4">Votre <br> espace<br></h1>
+          <h1 class="display-4">Modifier <br> votre accès<br></h1>
 
-          <form onsubmit="loginToApi(event)">
+          <form onsubmit="resetPassword(event)">
             <div class="form-group row">
               <div class="col-sm-10">
                 <input 
-                  type="text" 
+                  type="email" 
                   class="form-control" 
-                  id="inputLogin" 
-                  name="username" 
-                  placeholder="Email / nom d'utilisateur" 
+                  id="inputEmail" 
+                  name="email" 
+                  placeholder="Email" 
                   required>
               </div>
             </div>
@@ -79,8 +79,20 @@
                   type="password" 
                   class="form-control" 
                   id="inputPwd" 
-                  name="password" 
-                  placeholder="Mot de passe" 
+                  name="password1" 
+                  placeholder="Nouveau Mot de passe" 
+                  required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  id="inputPwdConfirm" 
+                  name="password2" 
+                  placeholder="Confirmer le Mot de passe" 
                   required>
               </div>
             </div>
@@ -91,21 +103,14 @@
                   type="submit" 
                   class="btn btn-round" 
                   style="background-color: #06668C; color: white;">
-                  Se connecter
+                  Réinitialiser le Mot de passe
                 </button>
               </div>
             </div>
 
             <div id="wrong" style="color: red; margin-top: 10px;"></div>
-
-            <div class="form-group row">
-              <div class="col-sm-10">
-                <small class="form-text text-muted">
-                  <a href="reset.php">Vous avez oublié votre mot de passe ?</a>
-                </small>
-              </div>
-            </div>
           </form>
+
         </div>
 
       </div>
