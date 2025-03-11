@@ -39,6 +39,35 @@ class DAOUser {
         }
     }
 
+    public function getUsersByCompany($companyId) {
+        try {
+            $query = "
+SELECT DISTINCT u.id, u.name, u.firstname, u.email, u.username, u.active,
+    CASE 
+        WHEN u.id_clients IS NOT NULL THEN 'clients'
+        WHEN u.id_providers IS NOT NULL THEN 'providers'
+        WHEN u.id_admin IS NOT NULL THEN 'admin'
+        WHEN u.id_employees IS NOT NULL THEN 'employees'
+        ELSE 'unknown'
+    END AS role
+FROM users u
+INNER JOIN employees e ON u.id = e.id_employees
+WHERE e.id_enterprise = :companyId;
+
+
+            ";
+
+            $stmt = $this->pdo->prepare(query: $query);
+            $stmt->bindParam(':companyId', $companyId, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            return ['error' => 'Erreur lors de la récupération des utilisateurs de l\'entreprise: ' . $e->getMessage()];
+        }
+    }
+
     public function updateActiveStatus($userId, $status) {
         try {
             $query = "

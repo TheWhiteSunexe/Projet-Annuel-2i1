@@ -1,5 +1,17 @@
+function getCompanyIdFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('companyId'); 
+}
+
 function fetchUsers() {
-    fetch('/Projet-Annuel-2i1/PA2i1/views/admin/back/api/APIUsers.php')
+    const companyId = getCompanyIdFromURL();
+
+    let apiUrl = '/Projet-Annuel-2i1/PA2i1/views/admin/back/api/APIUsers.php';
+    if (companyId) {
+        apiUrl += `?companyId=${companyId}`; 
+    }
+
+    fetch(apiUrl)
         .then(response => response.json())
         .then(users => {
             const tableBody = document.querySelector('#clients-table tbody');
@@ -35,13 +47,12 @@ function fetchUsers() {
                 tableBody.appendChild(row);
             });
         })
-        .catch(error => console.error("Erreur lors de la récupération des users :", error));
+        .catch(error => console.error("Erreur lors de la récupération des utilisateurs :", error));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     fetchUsers();
 });
-
 
 function updateContractStatus(userId, status) {
     fetch('/Projet-Annuel-2i1/PA2i1/views/admin/back/api/APIUsers.php', {
@@ -58,7 +69,7 @@ function updateContractStatus(userId, status) {
     .then(data => {
         if (data.status === 'success') {
             alert(`Compte mis à jour : ${status === 'rupture' ? 'Compte suspendu avec succès' : 'Compte réactivé avec succès'}`);
-            fetchUsers();
+            fetchUsers(); // Recharger la liste après modification
         } else {
             alert('Erreur de mise à jour du compte.');
         }

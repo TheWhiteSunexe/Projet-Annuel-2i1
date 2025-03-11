@@ -26,7 +26,7 @@ function fetchProviders() {
                         ${actionButton}
                     </td>
                     <td>
-                        <a class="btn btn-success btn-sm" href="cvDownload.php?id=${provider.id}" target="_blank"><i class="bi-info-circle"></i> Voir CV</a>
+                        <a class="btn btn-primary btn-sm" href="cvDownload.php?id=${provider.id}" target="_blank"><i class="bi-info-circle"></i> Voir CV</a>
                     </td>
                     <td>
                         <a class="btn btn-success btn-sm" href="users-profile.php?id=${provider.id}" target="_blank"><i class="bi-info-circle"></i> Info</a>

@@ -58,7 +58,7 @@
     </a>
   </li>-->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="Logs.php">
+    <a class="nav-link collapsed" href="signal.php">
       <i class="bi-bell"></i>
       <span>Signalement</span>
     </a>

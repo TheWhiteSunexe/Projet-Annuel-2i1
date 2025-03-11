@@ -70,7 +70,7 @@
     </div>
 </main>
   <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\moderation.js"></script>
-
+  <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\signal.js"></script>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->

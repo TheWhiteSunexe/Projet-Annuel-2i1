@@ -27,7 +27,7 @@ function fetchModerations() {
                         ${actionButton}
                     </td>
                     <td>
-                        <button class="btn btn-warning btn-sm" onclick="signal(${moderation.commentaire_id})"><i class="bi-shield-exclamation"></i> Signaler</button>
+                        <button class="btn btn-warning btn-sm" onclick="sendReporting(${moderation.commentaire_id}, 'create')"><i class="bi-shield-exclamation"></i> Signaler</button>
                     </td>
                     <td>
                         <a class="btn btn-success btn-sm" href="users-profile.php?id=" target="_blank"><i class="bi-info-circle"></i> Info</a>

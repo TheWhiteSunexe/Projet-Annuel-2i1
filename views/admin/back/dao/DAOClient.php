@@ -12,7 +12,7 @@ class DAOClient {
     public function getAllClients() {
         try {
             $query = "
-                SELECT u.id, u.name, u.firstname, u.email, c.entreprise, c.active
+                SELECT u.id, u.name, u.firstname, u.email, c.name AS company_name, c.id AS company_id, c.active
                 FROM users u
                 INNER JOIN clients c ON c.id_user = u.id;
             ";

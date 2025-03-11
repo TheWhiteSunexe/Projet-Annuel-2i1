@@ -4,9 +4,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/views/admin/b
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-function getUsers() {
+$companyId = isset($_GET['companyId']) ? intval($_GET['companyId']) : null;
+$users = getUsers($companyId);
+function getUsers($companyId = null) {
     $dao = new DAOUser();
+    if ($companyId) {
+        return $dao->getUsersByCompany($companyId); // Nouvelle méthode dans le DAO
+    }
     return $dao->getAllUsers();
 }
 
@@ -41,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-$users = getUsers();
+
+
 header('Content-Type: application/json');
 echo json_encode($users);
 ?>
