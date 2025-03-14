@@ -36,11 +36,41 @@
                     <?php
                     
                     if (isset($_SESSION['role'])) {
-                        echo '<a href="/Projet-Annuel-2i1/PA2i1/views/logout.php" onclick="logout()"><button class="btn btn-round btn-danger">Se déconnecter</button></a>';
+                        // echo '<a href="/Projet-Annuel-2i1/PA2i1/views/logout.php" onclick="logout()"><button class="btn btn-round btn-danger">Se déconnecter</button></a>';
+                        
+                        echo '
+                            <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($result['image']) ? $result['image'] : 'default.jpg') . '" alt="" class="user-pic user-pic-background" onclick="toggleMenu()">';
+                        echo '<div class="sub-menu-wrap" id="subMenu">
+                            <div class="sub-menu">
+                                <div class="user-info">
+                                    <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($result['image']) ? $result['image'] : 'default.jpg') . '" class="user-pic-background" alt="">
+                                    <h2>Settings</h2>
+                                </div>
+                                <hr>
+                                <a href="profil.php" class="sub-menu-link"><i class="bi alarm-fille"></i>
+                                    <p>Profil</p>
+                                    <span>></span>
+                                </a>
+                                <a href="/Projet-Annuel-2i1/PA2i1/views/logout.php" onclick="logout()" class="sub-menu-link"><i class="bi alarm-fille"></i>
+                                    <p>Se déconnecter</p>
+                                    <span>></span>
+                                </a>
+                            </div>';
                     } else {
                         echo '<a href="/login"><button class="btn btn-round btn-success">Se connecter</button></a>';
                     }
                     ?>
+
+
+
+                    <script>
+                        let subMenu = document.getElementById("subMenu");
+
+                        function toggleMenu(){
+                            subMenu.classList.toggle("open-menu");
+                        }
+
+                    </script>
                 </div>
           </nav>
         </div>
