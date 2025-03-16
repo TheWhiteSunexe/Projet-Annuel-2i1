@@ -49,6 +49,7 @@ function findUsersByCredentials($username, $password) {
             id, 
             username, 
             name,
+            image AS img,
             firstname,
             id_clients,
             id_providers,

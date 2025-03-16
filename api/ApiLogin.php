@@ -66,6 +66,7 @@ $_SESSION['name'] = $users['name'];
 $_SESSION['firstname'] = $users['firstname'];
 $_SESSION['role'] = $user['role'];
 $_SESSION['id'] = $users['id'];
+$_SESSION['img'] = $users['img'];
 
 echo json_encode([
     'token' => $tokenHashed,
