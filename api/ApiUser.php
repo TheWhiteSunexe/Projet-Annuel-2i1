@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['ac
             $email = $inputData['email'];
             $link = $inputData['link'];
             
-            $updateSuccess = DAOUser::updateProviders($userId, $name, $firstname, $company_name, $description, $activity_sector, $legal_form, $siret, $country, $address, $postal_code, $phone, $email, $link);
+            $updateSuccess = DAOUser::updateClients($userId, $name, $firstname, $company_name, $description, $activity_sector, $legal_form, $siret, $country, $address, $postal_code, $phone, $email, $link);
             
             if ($updateSuccess) {
                 echo json_encode(['success' => true, 'message' => 'Les informations du prestataire ont été mises à jour avec succès.']);
