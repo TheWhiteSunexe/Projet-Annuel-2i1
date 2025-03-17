@@ -130,7 +130,7 @@
         <div class="jumbotron bg-transparent">
           <h1 class="display-4 text-white">Je m'inscris !</h1>
 
-          <a href="signUp.php?type=client">
+          <a href="signUpClient.php?">
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Je suis une entreprise</span>
@@ -144,7 +144,7 @@
             </div>
           </a>
 
-          <a href="signUp.php?type=prestataire">
+          <a href="signUpProvider.php?">
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Je suis un prestataire</span>

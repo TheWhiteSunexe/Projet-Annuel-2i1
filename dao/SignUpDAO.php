@@ -24,7 +24,7 @@ class UserDAO {
             $user_id = $connection->lastInsertId();
 
             $sql_clients = "INSERT INTO clients (id_user, name, siret, legal_form, activity_sector, phone, link, address, postal_code, country)
-                            VALUES (:id_user, :company_name, :siret_number, :legal_form, :activity_sector, :contact_phone, :company_website, :address, :postal_code, :country)";
+                            VALUES (:id_user, :name, :siret, :legal_form, :activity_sector, :phone, :link, :address, :postal_code, :country)";
             $query_clients = $connection->prepare($sql_clients);
             $query_clients->execute([
                 'id_user' => $user_id,
@@ -52,7 +52,7 @@ class UserDAO {
             return true;
 
         } catch (PDOException $e) {
-            $connection->rollBack();
+            //$connection->rollBack();
             return "Erreur DAO : " . $e->getMessage();
         }
     }
@@ -107,7 +107,7 @@ class UserDAO {
             return true;
 
         } catch (PDOException $e) {
-            $connection->rollBack();
+            // $connection->rollBack();
             return "Erreur DAO : " . $e->getMessage();
         }
     }
