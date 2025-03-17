@@ -26,12 +26,13 @@ class EmployeesDAO {
     }
 
     // Ajouter un employé
-    // Si l'utilisateur existe déjà (email déjà présent dans users), on l'associe comme employé,
-    // sinon on crée un nouvel utilisateur avec mot de passe et on l'associe.
+    // Si l'utilisateur existe déjà dans "users", on vérifie qu'il n'est pas déjà client ou provider
+    // et qu'il n'est pas déjà employé dans cette entreprise.
+    // Sinon, on crée l'utilisateur et on l'associe comme employé.
     public function addEmployee($name, $firstname, $email, $password, $enterpriseId) {
         try {
             // Vérifier si l'email est déjà utilisé dans users
-            $checkEmailQuery = "SELECT id FROM users WHERE email = :email";
+            $checkEmailQuery = "SELECT id, id_clients, id_providers, id_employees FROM users WHERE email = :email";
             $stmt = $this->pdo->prepare($checkEmailQuery);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
@@ -48,7 +49,11 @@ class EmployeesDAO {
 
             if ($existingUser) {
                 $userId = $existingUser['id'];
-                // Vérifier si l'utilisateur est déjà employé dans cette entreprise
+                // Vérifier que l'utilisateur n'est pas déjà client ou prestataire
+                if (!empty($existingUser['id_clients']) || !empty($existingUser['id_providers'])) {
+                    return ['error' => 'Cet utilisateur est déjà un client ou un prestataire.'];
+                }
+                // Vérifier s'il est déjà employé dans cette entreprise
                 $checkEmployeeQuery = "SELECT id FROM employees WHERE id_employees = :userId AND id_enterprise = :enterpriseId";
                 $stmt = $this->pdo->prepare($checkEmployeeQuery);
                 $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
@@ -67,6 +72,7 @@ class EmployeesDAO {
             } else {
                 // L'utilisateur n'existe pas : créer le nouvel utilisateur
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                // On crée l'utilisateur avec id_employees = 1 (pour signifier qu'il s'agit d'un employé) et active = 1
                 $insertUserQuery = "INSERT INTO users (name, firstname, email, password, id_employees, active) 
                                     VALUES (:name, :firstname, :email, :password, 1, 1)";
                 $stmt = $this->pdo->prepare($insertUserQuery);
