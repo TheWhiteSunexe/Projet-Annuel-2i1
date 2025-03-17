@@ -23,8 +23,9 @@ if (!AuthMiddleware::checkAccess('clients')) {
   <?php include('includes/header.php'); ?>
   <main>
         <h2>Gestion des employés</h2>
+        <div id="message"></div>
 
-        <!-- Formulaire d'ajout d'employé -->
+        <!-- Formulaire d'ajout d'un employé -->
         <form id="addEmployeeForm">
             <label>Nom :</label>
             <input type="text" id="name" required>
@@ -34,6 +35,9 @@ if (!AuthMiddleware::checkAccess('clients')) {
 
             <label>Email :</label>
             <input type="email" id="email" required>
+
+            <label>Mot de passe :</label>
+            <input type="password" id="password" required>
 
             <label>Entreprise ID :</label>
             <input type="number" id="enterpriseId" required>
@@ -50,6 +54,7 @@ if (!AuthMiddleware::checkAccess('clients')) {
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Email</th>
+                        <th>Entreprise ID</th>
                         <th>Statut</th>
                         <th>Actions</th>
                     </tr>

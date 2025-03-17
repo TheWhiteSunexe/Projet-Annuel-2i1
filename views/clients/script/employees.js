@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: document.getElementById("name").value,
             firstname: document.getElementById("firstname").value,
             email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
             enterpriseId: document.getElementById("enterpriseId").value
         };
 
@@ -20,10 +21,18 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            alert(data.success || data.error);
-            fetchEmployees(); // Rafraîchir la liste après ajout
+            let messageBox = document.getElementById("message");
+            if (data.success) {
+                messageBox.innerHTML = `<p style="color: green;">${data.success}</p>`;
+                fetchEmployees(); // Rafraîchir la liste après ajout
+            } else {
+                messageBox.innerHTML = `<p style="color: red;">${data.error}</p>`;
+            }
         })
-        .catch(error => console.error("Erreur lors de l'ajout :", error));
+        .catch(error => {
+            console.error("Erreur lors de l'ajout :", error);
+            document.getElementById("message").innerHTML = `<p style="color: red;">Erreur inattendue.</p>`;
+        });
     });
 });
 
@@ -36,17 +45,18 @@ function fetchEmployees() {
             tableBody.innerHTML = "";
 
             if (!data || data.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="6">Aucun employé trouvé</td></tr>`; 
+                tableBody.innerHTML = `<tr><td colspan="7">Aucun employé trouvé</td></tr>`;
                 return;
             }
 
-            data.forEach(employee => { 
+            data.forEach(employee => {
                 let row = document.createElement("tr");
                 row.innerHTML = `
                     <td>${employee.id || 'N/A'}</td>
                     <td>${employee.name || 'N/A'}</td>
                     <td>${employee.firstname || 'N/A'}</td>
                     <td>${employee.email || 'N/A'}</td>
+                    <td>${employee.id_enterprise || 'N/A'}</td>
                     <td>${employee.status == 1 ? "Actif" : "Suspendu"}</td>
                     <td>
                         ${employee.status == 1 
@@ -60,7 +70,7 @@ function fetchEmployees() {
         .catch(error => {
             console.error('Erreur lors du chargement des employés:', error);
             document.getElementById('employeesTableBody').innerHTML =
-                `<tr><td colspan="6" style="color: red;">Erreur de chargement</td></tr>`; 
+                `<tr><td colspan="7" style="color: red;">Erreur de chargement</td></tr>`;
         });
 }
 
@@ -74,7 +84,7 @@ function changeStatus(id, action) {
     .then(response => response.json())
     .then(data => {
         alert(data.success || data.error);
-        fetchEmployees(); // Rafraîchir la liste après modification
+        fetchEmployees();
     })
     .catch(error => console.error("Erreur :", error));
 }

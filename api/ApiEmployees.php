@@ -25,11 +25,11 @@ if ($method === "POST") {
     }
 
     if ($data['action'] === 'add') {
-        if (!isset($data['name'], $data['firstname'], $data['email'], $data['enterpriseId'])) {
+        if (!isset($data['name'], $data['firstname'], $data['email'], $data['password'], $data['enterpriseId'])) {
             echo json_encode(['error' => 'Données incomplètes.']);
             exit();
         }
-        echo json_encode($dao->addEmployee($data['name'], $data['firstname'], $data['email'], $data['enterpriseId']));
+        echo json_encode($dao->addEmployee($data['name'], $data['firstname'], $data['email'], $data['password'], $data['enterpriseId']));
     } elseif ($data['action'] === 'update') {
         if (!isset($data['id'], $data['name'], $data['firstname'], $data['email'])) {
             echo json_encode(['error' => 'Données incomplètes.']);
@@ -38,13 +38,13 @@ if ($method === "POST") {
         echo json_encode($dao->updateEmployee($data['id'], $data['name'], $data['firstname'], $data['email']));
     } elseif ($data['action'] === 'suspend') {
         if (!isset($data['id'])) {
-            echo json_encode(['error' => 'ID manquant.']);
+            echo json_encode(['error' => 'ID employé manquant.']);
             exit();
         }
         echo json_encode($dao->suspendEmployee($data['id']));
     } elseif ($data['action'] === 'reactivate') {
         if (!isset($data['id'])) {
-            echo json_encode(['error' => 'ID manquant.']);
+            echo json_encode(['error' => 'ID employé manquant.']);
             exit();
         }
         echo json_encode($dao->reactivateEmployee($data['id']));
