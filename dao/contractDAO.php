@@ -7,7 +7,7 @@ class ContractDAO {
         try {
             $db = getDatabaseConnection();
             $query = "
-                SELECT c.id, c.name, c.date, cl.entreprise 
+                SELECT c.id, c.name, c.date, cl.name AS entreprise
                 FROM contracts c
                 INNER JOIN clients cl ON cl.id_user = :id
             ";
