@@ -26,19 +26,20 @@ if (!AuthMiddleware::checkAccess('clients')) {
     <?php include('includes/header.php'); ?>
 
     <main style="padding-left: 20px;  padding-right: 20px;">
+        <h1 class="display-4">Gestion des Devis</h1>
+        <button onclick="addDevis()"class="btn btn-primary profile-button">Créer un devis</button>
     <div>     
-    <h1 class="display-4">Gestion des Contrats</h1>
         <div id="result">
             <table class="table table-striped mt-4">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nom du contrat</th>
+                        <th>Nom du Devis</th>
                         <th>Date</th>
-                        <th>Entreprise</th>
+                        <th>Titre</th>
+                        <th>Contenu</th>
+                        <th>Progression</th>
                         <th>Situation</th>
-                        <th>Prix</th>
-                        <th>Paiement</th>
                         <th>Téléchargement</th>
                     </tr>
                 </thead>
@@ -49,5 +50,5 @@ if (!AuthMiddleware::checkAccess('clients')) {
     </div>
 </main>
     </body>
-    <script src="script/contracts.js"></script>
+    <script src="script/devis.js"></script>
 </html>

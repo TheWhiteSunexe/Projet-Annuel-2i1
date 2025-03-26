@@ -22,7 +22,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="invoice.php">Facture</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="application.php">Candidature</a>
+                        </li>
                     </ul>
                 </div>
                 <div>

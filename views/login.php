@@ -29,21 +29,21 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="aaaa">À propos</a>
-                        </li>
+                            <a class="nav-link" href="aaaa">Associations</a>
+                        <!-- </li>
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/download">Télécharger</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/prices">Tarifs</a>
+                            <a class="nav-link" href="http://localhost/prices">Devis</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="aaaa" id="navbardrop" data-toggle="dropdown">Langue</a>
                             <div class="dropdown-menu">
                               <button class="dropdown-item" onclick="language(&#39;FR&#39;)">🇫🇷 FR</button>
                               <button class="dropdown-item" onclick="language(&#39;EN&#39;)">🇬🇧 EN</button>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <a href="login.php"><button class="btn btn-round btn-success my-2 my-sm-0">Se connecter</button></a>

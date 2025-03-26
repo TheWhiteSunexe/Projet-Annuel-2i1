@@ -38,28 +38,38 @@
   <?php include('sidebar.php'); ?>
 
   <main id="main" class="main">
+  <div class="pagetitle">
+      <h1>Suivi des Contrats</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item active">Contracts</li>
+        </ol>
+      </nav>
+    </div>
     <form action="download-backend.php" method="post">
-        <button class="btn btn-primary profile-button" type="submit">Télécharger</button>
+        <button class="btn btn-primary profile-button" type="submit"><i class="bi-download"></i> Télécharger les Clients</button>
     </form>
     <div id="result">
         <table class="table table-striped mt-4" id="clients-table">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Rôle</th>
-                    <th>Action</th>
+                  <th>#</th>
+                  <th>Nom du contrat</th>
+                  <th>Date</th>
+                  <th>Entreprise</th>
+                  <th>Situation</th>
+                  <th>Paiement</th>
+                  <th>Téléchargement</th>
+                  <th>Plus d'info</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="contractTableBody">
             </tbody>
         </table>
     </div>
 </main>
-  <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\rien.js"></script>
+  <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\contracts.js"></script>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

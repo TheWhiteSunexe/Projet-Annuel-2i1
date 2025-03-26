@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 use Middleware\AuthMiddleware;
 use Controllers\AuthController;
-if (!AuthMiddleware::checkAccess('clients')) {
+if (!AuthMiddleware::checkAccess('providers')) {
     header('Location: /Projet-Annuel-2i1/PA2i1/views/login.php');
     exit();
 }
@@ -26,20 +26,19 @@ if (!AuthMiddleware::checkAccess('clients')) {
     <?php include('includes/header.php'); ?>
 
     <main style="padding-left: 20px;  padding-right: 20px;">
+        <h1 class="display-4">Gestion des Candidatures</h1> 
     <div>     
-    <h1 class="display-4">Gestion des Contrats</h1>
         <div id="result">
             <table class="table table-striped mt-4">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nom du contrat</th>
+                        <th>Nom du Devis</th>
                         <th>Date</th>
-                        <th>Entreprise</th>
-                        <th>Situation</th>
-                        <th>Prix</th>
-                        <th>Paiement</th>
-                        <th>Téléchargement</th>
+                        <th>Titre</th>
+                        <th>Contenu</th>
+                        <th>Salaire pour l'évènement</th>
+                        <th>Informations</th>
                     </tr>
                 </thead>
                 <tbody id="contractTableBody">
@@ -49,5 +48,5 @@ if (!AuthMiddleware::checkAccess('clients')) {
     </div>
 </main>
     </body>
-    <script src="script/contracts.js"></script>
+    <script src="js/application.js"></script>
 </html>

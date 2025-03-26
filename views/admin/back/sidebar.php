@@ -63,10 +63,40 @@
       <span>Signalement</span>
     </a>
   </li>
+
+  <li class="nav-heading">Gestion Business Care</li>
+
   <li class="nav-item">
-    <a class="nav-link collapsed" href="../home.php">
-      <i class="bi-box-arrow-in-right"></i>
-      <span>Retour au site</span>
+    <a class="nav-link collapsed" href="devis.php">
+      <i class="bi bi-person"></i>
+      <span>Devis</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="contracts.php">
+      <i class="bi bi-person"></i>
+      <span>Contrats</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="applications.php">
+      <i class="bi bi-person"></i>
+      <span>Candidatures</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="event.php">
+      <i class="bi bi-person"></i>
+      <span>Evenements</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="calendar.php">
+      <i class="bi bi-person"></i>
+      <span>Calendrier</span>
     </a>
   </li>
 
@@ -85,6 +115,15 @@
       <span>F.A.Q</span>
     </a>
   </li><!-- End F.A.Q Page Nav -->
+
+  <li class="nav-heading">Quitter l'administration</li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="../home.php">
+      <i class="bi-box-arrow-in-right"></i>
+      <span>Retour au site</span>
+    </a>
+  </li>
 
 </ul>
 
