@@ -32,7 +32,7 @@ class ApplicationDAO {
         try {
             $db = getDatabaseConnection();
             $query = "
-                UPDATE contracts SET id_provider = :id_provider, price = :price, status = 5, id_application = :id_application WHERE id = :id_contract 
+                UPDATE contracts SET id_provider = :id_provider, price = :price, status = 4, id_application = :id_application WHERE id = :id_contract 
             ";
             
             $stmt = $db->prepare($query);

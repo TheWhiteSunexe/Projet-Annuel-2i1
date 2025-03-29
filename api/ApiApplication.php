@@ -29,8 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['success' => false, 'error' => 'Données invalides']);
         exit;
     }
-
-    $success = ApplicationDAO::addApplication((int) $id_user, (int) $id_contract, (int) $price);
+    
+    $id_user = $_SESSION['id'];
+    $id_provider = ApplicationDAO::searchProvider((int) $id_user);
+    $success = ApplicationDAO::addApplication((int) $id_contract,  (int)$id_provider,  (int) $price);
 
     if ($success && !isset($success['error'])) {
         header('location: /Projet-annuel-2i1/PA2i1/views/providers/application.php');
@@ -48,6 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 $id = $_SESSION['id'];
-$contracts = ApplicationDAO::getAllApplication();
+$id_provider = ApplicationDAO::searchProvider((int) $id);
+
+if ($id_provider === null) {
+    echo json_encode(['error' => 'Aucun provider trouvé pour cet utilisateur.']);
+    exit;
+}
+
+$contracts = ApplicationDAO::getAllApplication($id_provider);
 echo json_encode($contracts);
 

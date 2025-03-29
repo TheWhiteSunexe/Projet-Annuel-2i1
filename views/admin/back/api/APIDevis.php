@@ -10,6 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action =  $data['action'] ?? null;
     $id = $data['id'] ?? null;
 
+    //NECESSAIRE LORSQU'ON VIENT PAS AVEC DU JSON (plublication annonce devis)
+    if (isset($_POST['id'])) {
+        $action =  $_GET['action'] ?? null;
+        $id = $_POST['id'] ?? null;
+    }
+    
     if (!$id) {
         echo json_encode([
             'success' => false,
@@ -41,14 +47,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         }
     } elseif ($action === 'startApplication') {
-        $result = DevisDAO::startApplication($id);
+        $id_room = $_POST['room'] ?? null;
+        $start_date = $_POST['start_date'] ?? null;
+        $end_date = $_POST['end_date'] ?? null;
+        $start_hour = $_POST['start_time'] ?? null;
+        $end_hour = $_POST['end_time'] ?? null;
+        $id_company = $_POST['id_company'] ?? null;
+        $title = $_POST['title'] ?? null;
+        $description = $_POST['description'] ?? null;
+
+        $result = DevisDAO::startApplication($id, $id_company, $id_room, $start_date, $end_date, $start_hour, $end_hour, $title, $description);
         if ($result === true) {
-            $message = "Les candidatures $id ont été lancées avec succès.";
+            $message = "L'annonce $id a été lancée avec succès.";
             echo json_encode(['success' => true, 'message' => $message]);
+            header('location: /Projet-annuel-2i1/PA2i1/views/admin/back/devis.php');
         } else {
             echo json_encode([
                 'success' => false,
-                'error' => $result ?: "Une erreur inconnue s'est produite lors de la création du signalement."
+                'error' => $result ?: "Une erreur inconnue s'est produite lors de la l'envoie de la publication."
             ]);
         }
     } elseif ($action === 'endApplication') {
@@ -59,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo json_encode([
                 'success' => false,
-                'error' => $result ?: "Une erreur inconnue s'est produite lors de la création du signalement."
+                'error' => $result ?: "Une erreur inconnue s'est produite lors de la supression de la publication."
             ]);
         }
     } else {

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let acceptanceText = '';
                 const contractStatus = Number(contracts.status);
                 
-                if (contractStatus === 5) {
+                if (contractStatus === 4) {
                     acceptanceText = `
                         <button onclick="acceptContract(${contracts.id}, 'accept')" class="btn btn-success profile-button">
                             <i class="bi-check-circle"></i> Accepter
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <button onclick="refuseContract(${contracts.id}, 'refuse')" class="btn btn-danger profile-button">
                             <i class="bi-x-circle"></i> Refuser
                         </button>`;
-                } else if (contractStatus === 6){
+                } else if (contractStatus === 5){
                     acceptanceText = `
                         <button onclick="refuseContract(${contracts.id}, 'refuse')" class="btn btn-danger profile-button">
                             <i class="bi-x-circle"></i> Rupture de contrat
@@ -36,11 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${contracts.id}</td>
                     <td>${contracts.name}</td>
                     <td>${contracts.date}</td>
-                    <td>${contracts.entreprise}</td>
+                    <td><button class="btn btn-primary profile-button"><i class="bi-info-circle"></i> Info</button></td>
                     <td>${acceptanceText}</td>
                     <td>${contracts.price}€</td> 
-                    <td><button class="btn btn-warning profile-button"><i class="bi-credit-card"></i>Payement</button></td> 
-                    <td><button class="btn btn-primary profile-button">Télécharger</button></td>
+                    <td><button class="btn btn-warning profile-button"><i class="bi-credit-card"></i> Payement</button></td> 
+                    <td><button class="btn btn-primary profile-button"><i class="bi-download"></i> Télécharger</button></td>
                 `;
                 tableBody.appendChild(row);
             });

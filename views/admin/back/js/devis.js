@@ -67,14 +67,88 @@ document.addEventListener("DOMContentLoaded", function () {
                         </button>`;
                 } else {
                     publicationText = `
-                        <button onclick="sendApplications(${contracts.id}, 'startApplication')" class="btn btn-warning profile-button">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal${contracts.id}">
                             <i class="bi-check-circle"></i> Publier l'annonce
-                        </button>`;
+                        </button>
+
+                        <div class="modal fade" id="exampleModal${contracts.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Publication de l'annonce :</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                
+                               <form action="/Projet-Annuel-2i1/PA2i1/views/admin/back/api/APIDevis.php?action=startApplication" method="POST">
+                                    <!-- Champ caché pour stocker l'ID du contrat -->
+
+                                    <input type="hidden" name="id" id="id" value="${contracts.id}">
+
+                                    <input type="hidden" name="id_company" id="id_company" value="${contracts.id_entreprise}">
+
+                                    <div class="form-group">
+                                        <label for="title">Titre de l'évènement :</label>
+                                        <textarea type="text" id="title" name="title" class="form-control" value="${contracts.title}" >${contracts.title}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="description">Description de l'évènement :</label>
+                                        <textarea type="text" id="description" name="description" class="form-control" value="${contracts.description}" >${contracts.description}</textarea>
+                                    </div>
+
+                                    <!-- Champs pour publier l'annonce : -->
+                                    <div class="form-group">
+                                        <label for="room">Sélection de la salle (id) :</label>
+                                        <input type="text" id="room" name="room" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="start_date">Sélection de la date de début :</label>
+                                        <input type="date" id="start_date" name="start_date" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="end_date">Sélection de la date de fin :</label>
+                                        <input type="date" id="end_date" name="end_date" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="start_time">Sélection de l'horaire de début :</label>
+                                        <input type="time" id="start_time" name="start_time" class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="end_time">Sélection de l'horaire de fin :</label>
+                                        <input type="time" id="end_time" name="end_time" class="form-control" required>
+                                    </div>
+
+                                    <!-- Bouton submit -->
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">
+                                        Publier l'annonce
+                                    </button>
+                                </form>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                                
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        `;
                 }
             
                 row.innerHTML = `
                     <td>${contracts.id}</td>
                     <td>${contracts.name}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="clients.php?id=${contracts.id_entreprise}"><i class="bi-person-lines-fill"></i>  ${contracts.entreprise}</a>
+                    </td>
                     <td>${contracts.date}</td>
                     <td>${statusText}</td>
                     <td>${publicationText}</td>

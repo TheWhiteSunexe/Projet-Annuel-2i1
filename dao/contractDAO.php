@@ -10,7 +10,7 @@ class ContractDAO {
                 SELECT c.id, c.name, c.date, cl.name AS entreprise, c.price, c.active, c.status
                 FROM contracts c
                 INNER JOIN clients cl ON cl.id_user = :id 
-                WHERE c.status >= 5 AND c.active = 1
+                WHERE c.status >= 4 AND c.active > 1
             ";
             
             $stmt = $db->prepare($query);
@@ -27,7 +27,7 @@ class ContractDAO {
         try {
             $db = getDatabaseConnection();
             $query = "
-                UPDATE contracts SET status = 6 WHERE id = :id
+                UPDATE contracts SET status = 5 WHERE id = :id
             ";
             
             $stmt = $db->prepare($query);
@@ -45,7 +45,7 @@ class ContractDAO {
         try {
             $db = getDatabaseConnection();
             $query = "
-                UPDATE contracts SET status = 4, price = NULL, id_provider = NULL, id_application = NULL WHERE id = :id
+                UPDATE contracts SET status = 3, price = NULL, id_provider = NULL, id_application = NULL WHERE id = :id
             ";
             
             $stmt = $db->prepare($query);

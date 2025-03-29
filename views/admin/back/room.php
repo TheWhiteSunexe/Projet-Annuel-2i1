@@ -39,31 +39,39 @@
 
   <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Suivi des Candidatures</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-        <li class="breadcrumb-item active">Candidatures</li>
-      </ol>
-    </nav>
-  </div>
+      <h1>Suivi des Devis</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item active">Room</li>
+        </ol>
+      </nav>
+    </div>
+    <form action="download-backend.php" method="post">
+        <button class="btn btn-primary profile-button" type="submit"><i class="bi-download"></i> Télécharger les Clients</button>
+    </form>
     <br>
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Différents devis ayant besoin d'un prestataire :</h5>
-
-              <div class="accordion accordion-flush" id="accordion-container">
-
-                <div class="accordion-item">
-
-                </div>
-                
-              </div>
-
-            </div>
-          </div>
+    <button onclick="addRoom()"class="btn btn-primary profile-button">Ajouter une salle</button>
+    <div id="result">
+        <table class="table table-striped mt-4" id="clients-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom de la salle</th>
+                    <th>Capacité</th>
+                    <th>Adresse</th>
+                    <th>Ville</th>
+                    <th>Code postal</th>
+                    <th>Pays</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="contractTableBody">
+            </tbody>
+        </table>
+    </div>
 </main>
-  <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\application.js"></script>
+  <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\room.js"></script>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

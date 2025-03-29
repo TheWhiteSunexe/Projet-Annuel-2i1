@@ -92,6 +92,12 @@
       <span>Evenements</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="room.php">
+      <i class="bi bi-person"></i>
+      <span>Gestion des salles</span>
+    </a>
+  </li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="calendar.php">
@@ -99,7 +105,7 @@
       <span>Calendrier</span>
     </a>
   </li>
-
+<!--
   <li class="nav-heading">Pages d'essai</li>
 
   <li class="nav-item">
@@ -107,14 +113,14 @@
       <i class="bi bi-person"></i>
       <span>Profil</span>
     </a>
-  </li><!-- End Profile Page Nav -->
+  </li> End Profile Page Nav 
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="pages-faq.php">
       <i class="bi bi-question-circle"></i>
       <span>F.A.Q</span>
     </a>
-  </li><!-- End F.A.Q Page Nav -->
+  </li> End F.A.Q Page Nav -->
 
   <li class="nav-heading">Quitter l'administration</li>
 

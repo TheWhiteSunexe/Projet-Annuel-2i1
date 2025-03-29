@@ -19,10 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }else if(contracts.status == 3){
                     statusText = 'Les prestataires postulent';
                 }else if(contracts.status == 4){
-                    statusText = 'Les prestataires postulent';
-                }else if(contracts.status == 5){
                     statusText = 'proposition du contrat';
-                }else if(contracts.status == 6){
+                }else if(contracts.status == 5){
                     statusText = 'Contrat accepté par le client';
                 }else{
                     statusText = 'Statut inconnu';

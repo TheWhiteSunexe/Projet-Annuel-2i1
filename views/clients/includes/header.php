@@ -22,6 +22,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="devis.php">Devis</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="room.php">Salle</a>
+                        </li>
 
                     </ul>
                 </div>

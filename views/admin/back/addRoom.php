@@ -39,31 +39,60 @@
 
   <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Suivi des Candidatures</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-        <li class="breadcrumb-item active">Candidatures</li>
-      </ol>
-    </nav>
-  </div>
+      <h1>Gestion des salles</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item active">Room</li>
+        </ol>
+      </nav>
+    </div>
     <br>
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Différents devis ayant besoin d'un prestataire :</h5>
+    <div id="result">
+    
+            <small><font color="red">*</font> Ces données sont obligatoires pour la création d'une salle.</small>
 
-              <div class="accordion accordion-flush" id="accordion-container">
+            <form action="/Projet-Annuel-2i1/PA2i1/views/admin/back/api/ApiRoom.php" method="POST">
 
-                <div class="accordion-item">
-
+                <div class="form-group">
+                    <label for="company_name"> Nom de la salle (ou numéro) :</label>
+                    <input type="text" name="name" id="name" class="form-control" value="Salle ">
                 </div>
-                
-              </div>
 
-            </div>
-          </div>
+                <div class="form-group">
+                    <label for="company_name"><font color="red">*</font> Capacité de la salle :</label>
+                    <input type="text" name="capacity" id="capacity" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="company_name"><font color="red">*</font> Adresse :</label>
+                    <input type="text" name="address" id="address" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="company_name"><font color="red">*</font> Code postal :</label>
+                    <input type="text" name="postal_code" id="postal_code" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="company_name"><font color="red">*</font> Ville :</label>
+                    <input type="text" name="city" id="city" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="company_name"><font color="red">*</font> Pays :</label>
+                    <input type="text" name="country" id="country" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Créer</button>
+                </div>
+
+                <div id="error_message" style="color: red;"></div>
+            </form>
+    </div>
 </main>
-  <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\application.js"></script>
+  <script src="/Projet-Annuel-2i1\PA2i1\views\admin\back\js\room.js"></script>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
