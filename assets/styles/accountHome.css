@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7fafd;
+}
+
+.hero-welcome {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('../images/bien-etre.jpg') center center / cover no-repeat fixed;
+    color: white;
+    padding: 160px 20px;
+    text-align: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.hero-welcome h1 {
+    font-size: 3.7rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
+}
+
+.hero-welcome h4 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.hero-line {
+    width: 80px;
+    height: 4px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 25px auto;
+}
+
+.dashboard-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0a4c9a;
+    letter-spacing: 0.5px;
+}
+
+.dashboard-section p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.dashboard-card {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card i {
+    font-size: 2.2rem;
+    color: #06668C;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+footer {
+    background-color: #0a4c9a;
+    color: white;
+    padding: 40px 0;
+}
+
+footer a {
+    color: #cfe5ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.social-icons i {
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-welcome h1 {
+        font-size: 2rem;
+    }
+
+    .hero-welcome h4 {
+        font-size: 1.1rem;
+    }
+}
