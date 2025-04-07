@@ -17,7 +17,7 @@
       <header>
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand" href="login.php">
+                <a class="navbar-brand" href="index.php">
                 <img width="40" height="40" src="../assets/images/logoSmall.png" alt="Small Logo">
 
                     Business Care</a>
