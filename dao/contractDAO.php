@@ -26,20 +26,24 @@ class ContractDAO {
     public static function acceptContract($id) {
         try {
             $db = getDatabaseConnection();
-            $query = "
-                UPDATE contracts SET status = 5 WHERE id = :id
-            ";
             
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $success = $stmt->execute();
+            $query1 = "UPDATE contracts SET status = 5 WHERE id = :id";
+            $stmt1 = $db->prepare($query1);
+            $stmt1->bindParam(':id', $id, PDO::PARAM_INT);
+            $success1 = $stmt1->execute();
     
-            return ['success' => $success];
+            $query2 = "UPDATE event SET active = 1 WHERE id_contract = :id";
+            $stmt2 = $db->prepare($query2);
+            $stmt2->bindParam(':id', $id, PDO::PARAM_INT);
+            $success2 = $stmt2->execute();
+    
+            return ['success' => $success1 && $success2];
     
         } catch (PDOException $e) {
             return ['error' => 'Erreur de base de données: ' . $e->getMessage()];
         }
     }
+    
     
     public static function refuseContract($id) {
         try {

@@ -21,7 +21,7 @@ class EventDAO {
             return [];
         }
 
-        $sql = "SELECT title AS title, date AS start_date, 
+        $sql = "SELECT title AS title, start_date AS start_date, end_date AS end_date, 
                        TIME_FORMAT(start_hour, '%H:%i') AS heure_debut, 
                        TIME_FORMAT(end_hour, '%H:%i') AS heure_fin 
                 FROM event WHERE id IN ($ids)";
@@ -33,7 +33,7 @@ class EventDAO {
 
         foreach ($events as &$event) {
             $event['start'] = $event['start_date'] . 'T' . date("H:i", strtotime($event['heure_debut']));
-            $event['end'] = $event['start_date'] . 'T' . date("H:i", strtotime($event['heure_fin']));
+            $event['end'] = $event['end_date'] . 'T' . date("H:i", strtotime($event['heure_fin']));
             unset($event['start_date'], $event['heure_debut'], $event['heure_fin']);
         }
 

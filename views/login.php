@@ -111,7 +111,7 @@
       </div>
 
       <div class="col-7">
-        <img class="d-lg-block mx-auto" src="" >
+        <img class="d-lg-block mx-auto" style="height:100%; width:175%;" src="/Projet-Annuel-2i1/PA2i1/assets/images/plante.png" >
       </div>
     </div>
   </div>
