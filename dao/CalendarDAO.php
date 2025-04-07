@@ -21,7 +21,7 @@ class EventDAO {
             return [];
         }
 
-        $sql = "SELECT title AS title, start_date AS start_date,  end_date AS end_date,
+        $sql = "SELECT title AS title, start_date AS start_date, end_date AS end_date, 
                        TIME_FORMAT(start_hour, '%H:%i') AS heure_debut, 
                        TIME_FORMAT(end_hour, '%H:%i') AS heure_fin 
                 FROM event WHERE id IN ($ids)";
