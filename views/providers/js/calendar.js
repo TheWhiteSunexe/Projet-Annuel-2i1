@@ -1,5 +1,5 @@
 function getEvents() {
-    return fetch('/Projet-Annuel-2i1/PA2i1/api/ApiCalendar.php')
+    return fetch('/Projet-Annuel-2i1/PA2i1/api/ApiCalendar.php?user=providers')
         .then(response => response.json())
         .catch(error => {
             console.error("Erreur lors du chargement des événements :", error);

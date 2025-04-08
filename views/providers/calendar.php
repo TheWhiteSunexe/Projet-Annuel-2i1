@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 use Middleware\AuthMiddleware;
 use Controllers\AuthController;
-if (!AuthMiddleware::checkAccess('employees')) {
+if (!AuthMiddleware::checkAccess('providers')) {
     header('Location: /Projet-Annuel-2i1/PA2i1/views/login.php');
     exit();
 }
@@ -23,6 +23,7 @@ if (!AuthMiddleware::checkAccess('employees')) {
 <!DOCTYPE HTML>
 <html>
     <?php include('includes/head.php'); ?>    
+
     <body>
         
         <?php include('includes/header.php'); ?>
@@ -48,7 +49,7 @@ if (!AuthMiddleware::checkAccess('employees')) {
     <script>
         var eventsData = <?php echo $events_json; ?>;
     </script>
-    <script src="/Projet-Annuel-2i1/PA2i1/views/employees/js/calendar.js" defer></script>
+    <script src="/Projet-Annuel-2i1/PA2i1/views/providers/js/calendar.js" defer></script>
     <script src="/Projet-Annuel-2i1/PA2i1/assets/calendar/js/main.js"></script>
         </main>
     </body>

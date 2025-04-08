@@ -46,12 +46,10 @@ document.addEventListener("DOMContentLoaded", function() {
           });
 
           for (const date in groupedEvents) {
-              let pane = document.createElement('div');
-              pane.classList.add('tab-pane', 'fade');
-              if (Object.keys(groupedEvents)[0] === date) {
-                  pane.classList.add('active', 'show');
-              }
-              pane.id = date;
+            let pane = document.createElement('div');
+            pane.classList.add('tab-pane', 'fade', 'active', 'show');
+            pane.id = date;
+            
 
               let row = document.createElement('div');
               row.classList.add('row');
@@ -61,29 +59,53 @@ document.addEventListener("DOMContentLoaded", function() {
                   let endTime = new Date(`1970-01-01T${event.end_hour}`).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                   let eventDate = new Date(event.date).toLocaleDateString('fr-FR');
                   row.innerHTML += `
-                      <div class="col-lg-4 col-md-6">
+                  <br>
+                  <div style="border: 1px solid grey; border-radius: 10px; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); padding: 16px; margin: 16px; width : 500px;">
+                      <div>
                           <div class="single-schedules-inner">
                               <div class="date">
                                   <i class="fa fa-clock-o"></i>
                                   ${startTime} - ${endTime} &emsp; ${eventDate}
                               </div>
                               <h5>${event.title}</h5>
+                              <h5>Animé par : ${event.firstname} ${event.name}</h5>
                               <p>${event.description}</p>
-                              <div class="media">
-                                  <div class="media-body align-self-center">
-                                      <h6>nom prenom</h6>
-                                      <p>profession</p>
+                              <div class="media-right align-self-center">
+                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${event.id}"><i class="bi bi-info-circle"></i> 
+                                        Lieu
+                                      </button>
                                   </div>
+                              <div class="media">
                                   <div class="media-left">
                                       <!-- Boutons de réservation -->
-                                      <button type="button" class="btn btn-primary" onclick="handleReservation(${event.id})">Réservation</button>
-                                      <button type="button" class="btn btn-danger" onclick="handleDesinscription(${event.id})">Désinscription</button>
-                                      <!-- Bouton de suppression pour modérateurs, si applicable -->
-                                      ${ event.moderator === true ? `<button type="button" class="btn btn-danger" onclick="handleSuppression(${event.id})">Supprimer</button>` : "" }
+                                      <br>
+                                      <button type="button" class="btn btn-success" onclick="handleReservation(${event.id}, 'follow')"><i class="bi bi-check-circle"></i> Réservation</button>
+                                      <button type="button" class="btn btn-danger" onclick="handleDesinscription(${event.id}, 'unfollow')"><i class="bi bi-ban"></i> Désinscription</button>
                                   </div>
                               </div>
                           </div>
                       </div>
+
+                      <div class="modal fade" id="${event.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">${event.title}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h6 class="modal-text">Lieu pour l'évènement :</h6>
+                                <h6 class="modal-text">${event.address}, ${event.postal_code}</h6>
+                                <h6 class="modal-text">${event.city}, ${event.country}</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <br>
                   `;
               });
               pane.appendChild(row);
@@ -94,13 +116,46 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function handleReservation(eventId) {
-  window.location.href = `payement.php?id=${eventId}`;
-}
-
-function handleDesinscription(eventId) {
-  window.location.href = `payement.php?id=${eventId}&alert=1`;
-}
-
-function handleSuppression(eventId) {
-  window.location.href = `suppression_resa.php?id=${eventId}`;
-}
+    fetch(`/Projet-Annuel-2i1/PA2i1/api/ApiEvent.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: eventId, action: 'follow' })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Réservation confirmée !');
+      } else {
+        alert('Erreur lors de la réservation : ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Erreur API:', error);
+      alert('Une erreur est survenue.');
+    });
+  }
+  
+  function handleDesinscription(eventId) {
+    fetch(`/Projet-Annuel-2i1/PA2i1/api/ApiEvent.php`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: eventId, action: 'unfollow' })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Désinscription effectuée.');
+      } else {
+        alert('Erreur lors de la désinscription : ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Erreur API:', error);
+      alert('Une erreur est survenue.');
+    });
+  }
+  

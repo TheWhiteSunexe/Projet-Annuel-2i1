@@ -10,19 +10,26 @@
 }
 
 .btn-primary {
-  background-color: #06668C !important;
-  border-color: #06668C !important;
+  background-color: #06668C ;
+  border-color: #06668C ;
 }
 
 .btn-primary:hover {
-  background-color: #044f6a !important;
+  background-color: #044f6a ;
 }
 
 .btn-success {
-  background-color: #81B29A !important;
-  border-color: #81B29A !important;
+  background-color: #044f6a ;
+  border-color: #044f6a ;
 }
 
 .btn-success:hover {
-  background-color: #6ca78b !important;
+  background-color: #427AA1 ;
+}
+
+.bi-star-fill{
+  color : yellow;
+}
+.bi-star{
+  color : yellow;
 }

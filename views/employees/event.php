@@ -65,12 +65,12 @@ if (!AuthMiddleware::checkAccess('employees')) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="/Projet-Annuel-2i1/PA2i1/views/public/js/event.js" defer></script>
-    
     <main>
     <div class="container">
         <div class="schedules-area pd-top-110 pd-bottom-120">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-8">
+                    <br>
                     <div class="section-title text-center">
                         <h1>Évènements programmés pour ce cours :</h1>
                         <br>
@@ -89,7 +89,7 @@ if (!AuthMiddleware::checkAccess('employees')) {
             <div id="eventDetailsContainer">
             </div>
 
-            <div class="row justify-content-center">
+            <!-- <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-8">
                     <div class="section-title text-center">
                         <h1>Lieu du cours :</h1>
@@ -100,7 +100,7 @@ if (!AuthMiddleware::checkAccess('employees')) {
             </div>
             <div class="ratio ratio-21x9">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.2775760830753!2d2.3824539!3d48.8490961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d9c7af387%3A0x5891d8d62e8535c7!2sYour%20Location%20Name!5e0!3m2!1sen!2sus!4v1672242259543!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            </div> -->
         </div>
     </div>
 </main>

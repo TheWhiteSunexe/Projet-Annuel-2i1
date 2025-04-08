@@ -17,7 +17,7 @@
                             <a class="nav-link" href="chatbot.php">Chatbot</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="advice.php">Conseils</a>
+                            <a class="nav-link" href="faq.php">Conseils</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="teams.php">Associations & Gestion</a>
