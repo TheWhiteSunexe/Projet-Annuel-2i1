@@ -1,40 +1,44 @@
 <header>
-        <div class="container-xl">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand" href="home.php">
+    <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <a class="navbar-brand" href="home.php">
                 <img width="40" height="40" src="../../assets/images/logoSmall.png" alt="Small Logo">
-                    Business Care</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
+                Business Care</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="contracts.php">Contrats</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="stripe.php">Prélèvement</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="employees.php">Employés</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="devis.php">Devis</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contracts.php">Contrats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stripe.php">Prélèvement</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="employees.php">Employés</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="devis.php">Devis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="factures.php">Factures</a> <!-- 👈 Bouton ajouté ici -->
+                    </li>
 
-                    </ul>
-                </div>
-                <div>
-                    
-                    <?php
-                    
-                    if (isset($_SESSION['role'])) {
-                        // echo '<a href="/Projet-Annuel-2i1/PA2i1/views/logout.php" onclick="logout()"><button class="btn btn-round btn-danger">Se déconnecter</button></a>';
-                        
-                        echo '
+                </ul>
+
+            </div>
+            <div>
+
+                <?php
+
+                if (isset($_SESSION['role'])) {
+                    // echo '<a href="/Projet-Annuel-2i1/PA2i1/views/logout.php" onclick="logout()"><button class="btn btn-round btn-danger">Se déconnecter</button></a>';
+
+                    echo '
                             <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($result['image']) ? $result['image'] : 'default.jpg') . '" alt="" class="user-pic user-pic-background" onclick="toggleMenu()">';
-                        echo '<div class="sub-menu-wrap" id="subMenu">
+                    echo '<div class="sub-menu-wrap" id="subMenu">
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($result['image']) ? $result['image'] : 'default.jpg') . '" class="user-pic-background" alt="">
@@ -50,22 +54,21 @@
                                     <span>></span>
                                 </a>
                             </div>';
-                    } else {
-                        echo '<a href="/login"><button class="btn btn-round btn-success">Se connecter</button></a>';
+                } else {
+                    echo '<a href="/login"><button class="btn btn-round btn-success">Se connecter</button></a>';
+                }
+                ?>
+
+
+
+                <script>
+                    let subMenu = document.getElementById("subMenu");
+
+                    function toggleMenu() {
+                        subMenu.classList.toggle("open-menu");
                     }
-                    ?>
-
-
-
-                    <script>
-                        let subMenu = document.getElementById("subMenu");
-
-                        function toggleMenu(){
-                            subMenu.classList.toggle("open-menu");
-                        }
-
-                    </script>
-                </div>
-          </nav>
-        </div>
-      </header>
+                </script>
+            </div>
+        </nav>
+    </div>
+</header>
