@@ -7,7 +7,11 @@ class ContractDAO {
         try {
             $db = getDatabaseConnection();
             $query = "
+<<<<<<< HEAD
+                SELECT c.id, c.name, c.date, cl.name AS entreprise
+=======
                 SELECT c.id, c.name, c.date, cl.name AS entreprise, c.price, c.active, c.status
+>>>>>>> c9d4ebc2a703f089d2b68acd766e06b13561dc68
                 FROM contracts c
                 INNER JOIN clients cl ON cl.id_user = :id 
                 WHERE c.status >= 4 AND c.active > 1
