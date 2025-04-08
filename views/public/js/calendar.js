@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: ['interaction', 'dayGrid'],
-        defaultDate: '2025-01-30', 
+        defaultDate: new Date().toISOString().split('T')[0], 
         editable: true,
         eventLimit: true, 
         events: events 

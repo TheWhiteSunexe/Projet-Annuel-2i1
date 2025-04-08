@@ -1,27 +1,45 @@
-
-img{
-  /*display: none;*/
-  width: inherit;
+/* LOGIN SECTION */
+#heroBanner-login {
+  background-color: #f5f9ff !important;
+  padding: 80px 0;
 }
 
-#heroBanner-login input{
-  background-color: #EBF2FA!important;
-  border-radius: 15px!important;
-  border: none!important;
-}
-#heroBanner-login{
-  background-color: #EBF2FA!important;
-  border-radius: 15px!important;
-  border: none!important;
-  
-  /* height: 650px!important; */
+#heroBanner-login input {
+  background-color: #EBF2FA !important;
+  border-radius: 10px !important;
+  border: 1px solid #cfd9e4 !important;
+  padding: 12px 20px;
+  font-size: 1rem;
 }
 
-#signup-links .btn{padding: 0px;}
-#signup-links .input-group-text{
-  width: 250px!important;
+#heroBanner-login .jumbotron {
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-.jumbotron {
-  margin-top: 2rem!important;
+#signup-links {
+  background-color: #6ac10c;
+  padding: 60px 0;
+}
+
+#signup-links h2 {
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+#signup-links .btn {
+  padding: 0;
+}
+
+#signup-links .input-group-text {
+  width: 250px !important;
+  background-color: #fff;
+  border-radius: 15px 0 0 15px;
+  font-weight: 500;
+}
+
+#signup-links .input-group .btn {
+  border-radius: 0 15px 15px 0;
+  background-color: #06668C;
+  color: white;
 }

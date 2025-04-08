@@ -17,7 +17,7 @@
       <header>
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand" href="login.php">
+                <a class="navbar-brand" href="index.php">
                 <img width="40" height="40" src="../assets/images/logoSmall.png" alt="Small Logo">
 
                     Business Care</a>
@@ -29,21 +29,21 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="aaaa">À propos</a>
-                        </li>
+                            <a class="nav-link" href="aaaa">Associations</a>
+                        <!-- </li>
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/download">Télécharger</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/prices">Tarifs</a>
+                            <a class="nav-link" href="http://localhost/prices">Devis</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="aaaa" id="navbardrop" data-toggle="dropdown">Langue</a>
                             <div class="dropdown-menu">
                               <button class="dropdown-item" onclick="language(&#39;FR&#39;)">🇫🇷 FR</button>
                               <button class="dropdown-item" onclick="language(&#39;EN&#39;)">🇬🇧 EN</button>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <a href="login.php"><button class="btn btn-round btn-success my-2 my-sm-0">Se connecter</button></a>
@@ -111,7 +111,7 @@
       </div>
 
       <div class="col-7">
-        <img class="d-lg-block mx-auto" src="" >
+        <img class="d-lg-block mx-auto" style="height:100%; width:175%;" src="/Projet-Annuel-2i1/PA2i1/assets/images/plante.png" >
       </div>
     </div>
   </div>
@@ -130,7 +130,7 @@
         <div class="jumbotron bg-transparent">
           <h1 class="display-4 text-white">Je m'inscris !</h1>
 
-          <a href="signUp.php?type=client">
+          <a href="signUpClient.php?">
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Je suis une entreprise</span>
@@ -144,7 +144,7 @@
             </div>
           </a>
 
-          <a href="signUp.php?type=prestataire">
+          <a href="signUpProvider.php?">
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Je suis un prestataire</span>

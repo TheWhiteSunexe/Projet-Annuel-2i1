@@ -83,7 +83,7 @@ class ForumStatsDAO {
         $db = getDatabaseConnection();
 
         // Récupérer le nombre total de sujets
-        $queryTopics = "SELECT COUNT(*) AS total_topics FROM Forum_commentaires";
+        $queryTopics = "SELECT COUNT(*) AS total_topics FROM Forum_messages";
         $resultTopics = $db->query($queryTopics);
         $totalTopics = $resultTopics->fetch(PDO::FETCH_ASSOC)['total_topics'];
 

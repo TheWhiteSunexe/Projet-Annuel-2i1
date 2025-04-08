@@ -11,7 +11,14 @@ function getMessages( $conversationId) {
     $stmt->execute(['sujet' => $conversationId]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
+function addViews($conversationId, $userId){
+    $bdd = getDatabaseConnection();
+    $query = "INSERT INTO visite (id_user, id_message) 
+              VALUES (:id_user, :conversationId)";
+    $stmt = $bdd->prepare($query);
+    $stmt->execute(['conversationId' => $conversationId, 'id_user' => $userId ]);
+    return $stmt->fetchColumn(); 
+}
 function addMessage( $conversationId, $userId, $content, $visible) {
     $bdd = getDatabaseConnection();
     $query = "INSERT INTO forum_commentaires (message_id, utilisateur_id, contenu, date_creation, active) 
@@ -31,4 +38,5 @@ function getChatTitle($conversationId) {
     $stmt->execute(['conversationId' => $conversationId]);
     return $stmt->fetchColumn(); 
 }
+
 ?>

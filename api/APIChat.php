@@ -12,7 +12,7 @@ $action = $_GET['action'] ?? '';
 if ($action === 'getMessages' && isset($_GET['conversationId'])) {
 
     echo json_encode(getMessages( $_GET['conversationId']));
-
+    addViews($_GET['conversationId'], $_SESSION['id']);
 } elseif ($action === 'sendMessage' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = json_decode(file_get_contents("php://input"), true);
@@ -20,7 +20,7 @@ if ($action === 'getMessages' && isset($_GET['conversationId'])) {
     if (isset($data['conversationId'], $data['userId'], $data['content'])) {
         
         $result = processMessage($data['conversationId'], $data['userId'], $data['content']);
-    
+        
         echo json_encode(['success' => $result]);
 
     } else {

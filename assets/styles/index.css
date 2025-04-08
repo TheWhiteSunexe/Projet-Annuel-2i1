@@ -1,0 +1,95 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f9ff;
+  }
+
+  .navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .hero {
+background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../images/bien-etre.jpg') center center / cover no-repeat fixed;
+color: white;
+text-align: center;
+padding: 180px 20px;
+  }
+
+  .hero h1 {
+font-size: 3.2rem;
+font-weight: bold;
+line-height: 1.3;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero p {
+font-size: 1.3rem;
+margin-top: 20px;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+
+  .btn-primary {
+    background-color: #06668C;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #044b68;
+  }
+
+  .section-alt {
+    background-color: #eef4ff;
+  }
+
+  .service-card {
+    transition: all 0.3s ease;
+    padding: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .bi {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #06668C;
+  }
+
+  footer {
+    background-color: #0a4c9a;
+    color: white;
+    padding: 40px 0;
+  }
+
+  footer a {
+    color: #cfe5ff;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  .social-icons i {
+    font-size: 1.2rem;
+    margin: 0 10px;
+  }
+
+  h2.section-title {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  p.lead {
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }

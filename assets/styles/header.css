@@ -1,6 +1,18 @@
-
 /* HEADER */
-#navbarNav .nav-item{
+#navbarNav .nav-item {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.navbar {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
 }

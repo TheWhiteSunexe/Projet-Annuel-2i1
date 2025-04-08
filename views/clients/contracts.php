@@ -25,8 +25,9 @@ if (!AuthMiddleware::checkAccess('clients')) {
     <body>
     <?php include('includes/header.php'); ?>
 
-    <main>
+    <main style="padding-left: 20px;  padding-right: 20px;">
     <div>     
+    <h1 class="display-4">Gestion des Contrats</h1>
         <div id="result">
             <table class="table table-striped mt-4">
                 <thead>
@@ -36,6 +37,7 @@ if (!AuthMiddleware::checkAccess('clients')) {
                         <th>Date</th>
                         <th>Entreprise</th>
                         <th>Situation</th>
+                        <th>Prix</th>
                         <th>Paiement</th>
                         <th>Téléchargement</th>
                     </tr>

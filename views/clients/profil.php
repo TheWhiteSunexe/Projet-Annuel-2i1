@@ -72,13 +72,13 @@ if (!AuthMiddleware::checkAccess('clients')) {
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="/Projet-Annuel-2i1/PA2i1/assets/images/default.jpg" alt="Profile" class="rounded-circle" style="height: 70px !important; width: 70px !important;">
-              <h2>Kevin Anderson</h2>
-              <h3>Web Designer</h3>
+            <img src="/Projet-Annuel-2i1/PA2i1/uploads/<?php echo !empty($_SESSION['img']) ? $_SESSION['img'] : 'default.jpg'; ?>" 
+            alt="Profile" 
+            class="rounded-circle" 
+            style="height: 70px !important; width: 70px !important;">
+              <h2 id="full-name-title">Chargement...</h2>
+              <h3 id="company-title">Chargement...</h3>
               <div class="social-links mt-2">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                 <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
@@ -94,19 +94,15 @@ if (!AuthMiddleware::checkAccess('clients')) {
               <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Général</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Modifier Profil</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Paramètres</button>
                 </li>
 
               </ul>
@@ -114,7 +110,7 @@ if (!AuthMiddleware::checkAccess('clients')) {
 
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
                 <h5 class="card-title">À propos</h5>
-                <p class="small fst-italic">Description de l'utilisateur...</p>
+                <p class="small fst-italic" id="description">Description de l'utilisateur...</p>
 
                 <h5 class="card-title">Détails du Profil</h5>
 
@@ -122,15 +118,30 @@ if (!AuthMiddleware::checkAccess('clients')) {
                     <div class="col-lg-3 col-md-4 label">Nom complet</div>
                     <div class="col-lg-9 col-md-8" id="full-name">Chargement...</div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Téléphone</div>
+                    <div class="col-lg-9 col-md-8" id="phone">Chargement...</div>
+                </div>
 
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8" id="email">Chargement...</div>
+                </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-4 label">Entreprise</div>
                     <div class="col-lg-9 col-md-8" id="company">Chargement...</div>
                 </div>
-
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Métier</div>
-                    <div class="col-lg-9 col-md-8" id="job">Chargement...</div>
+                    <div class="col-lg-3 col-md-4 label">Forme légale</div>
+                    <div class="col-lg-9 col-md-8" id="legal_form">Chargement...</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Siret</div>
+                    <div class="col-lg-9 col-md-8" id="siret">Chargement...</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Secteur d'activité</div>
+                    <div class="col-lg-9 col-md-8" id="activity_sector">Chargement...</div>
                 </div>
 
                 <div class="row">
@@ -142,125 +153,137 @@ if (!AuthMiddleware::checkAccess('clients')) {
                     <div class="col-lg-3 col-md-4 label">Adresse</div>
                     <div class="col-lg-9 col-md-8" id="address">Chargement...</div>
                 </div>
-
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Téléphone</div>
-                    <div class="col-lg-9 col-md-8" id="phone">Chargement...</div>
+                    <div class="col-lg-3 col-md-4 label">Code Postal</div>
+                    <div class="col-lg-9 col-md-8" id="postal_code">Chargement...</div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8" id="email">Chargement...</div>
-                </div>
             </div>
 
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
+                  <form id="updateForm">
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                      <img src="/Projet-Annuel-2i1/PA2i1/uploads/<?php echo !empty($_SESSION['img']) ? $_SESSION['img'] : 'default.jpg'; ?>" 
+                      alt="Profile" 
+                      class="rounded-circle" 
+                      style="height: 70px !important; width: 70px !important;">
+                      <div class="pt-2">
+                        <input type="file" id="profileImageInput" accept="image/*" style="display: none;" onchange="uploadProfileImage()">
+                        <a onclick="document.getElementById('profileImageInput').click();" class="btn btn-primary btn-sm" title="Upload new profile image">
+                            <i class="bi bi-upload"></i>
+                        </a>
+
+                          <a onclick="deleteimg()" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                      <label for="full-name-title" class="col-md-4 col-lg-3 col-form-label">Nom</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                        <input name="full-name-title" type="text" class="form-control" id="name-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                      <label for="full-name" class="col-md-4 col-lg-3 col-form-label">Prénom</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                        <input name="full-name" type="text" class="form-control" id="firstname-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                      <label for="activity_sector" class="col-md-4 col-lg-3 col-form-label">Secteur d'activité</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                        <input name="activity_sector" type="text" class="form-control" id="activity_sector-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                      <label for="description" class="col-md-4 col-lg-3 col-form-label">Description des services</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                        <textarea name="description" class="form-control" id="description-update" style="height: 100px"></textarea>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Nom d'entreprise</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="USA">
+                        <input name="company" type="text" class="form-control" id="company-name-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                      <label for="legal_form" class="col-md-4 col-lg-3 col-form-label">Forme légale</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                        <input name="legal_form" type="text" class="form-control" id="legal_form-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                      <label for="siret" class="col-md-4 col-lg-3 col-form-label">SIRET</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                        <input name="siret" type="text" class="form-control" id="siret-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <label for="country" class="col-md-4 col-lg-3 col-form-label">Pays</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                        <input name="country" type="text" class="form-control" id="country-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
+                      <label for="address" class="col-md-4 col-lg-3 col-form-label">Adresse</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
+                        <input name="address" type="text" class="form-control" id="address-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
+                      <label for="postal_code" class="col-md-4 col-lg-3 col-form-label">Code postal</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
+                        <input name="postal_code" type="text" class="form-control" id="postal_code-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
+                      <label for="phone" class="col-md-4 col-lg-3 col-form-label">Téléphone</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
+                        <input name="phone" type="text" class="form-control" id="phone-update">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+                      <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+                        <input name="email" type="email" class="form-control" id="email-update">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="link" class="col-md-4 col-lg-3 col-form-label">Profil LinkedIn</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="link" type="text" class="form-control" id="link-update">
                       </div>
                     </div>
 
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
+                    
                   </form><!-- End Profile Edit Form -->
-
+                  <br>
+                  <div class="text-center">
+                    <button onclick="deleteAccount()" class="btn btn-danger">Supprimer le compte</butto>
+                  </div>
                 </div>
-
                 <div class="tab-pane fade pt-3" id="profile-settings">
 
                   <!-- Settings Form -->
@@ -302,39 +325,6 @@ if (!AuthMiddleware::checkAccess('clients')) {
                   </form><!-- End settings Form -->
 
                 </div>
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Change Password</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-
-                </div>
-
               </div><!-- End Bordered Tabs -->
 
             </div>

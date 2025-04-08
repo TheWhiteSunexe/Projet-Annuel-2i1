@@ -22,7 +22,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="invoice.php">Facture</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="application.php">Candidature</a>
+                        </li>
                     </ul>
                 </div>
                 <div>
@@ -33,11 +35,11 @@
                         // echo '<a href="/Projet-Annuel-2i1/PA2i1/views/logout.php" onclick="logout()"><button class="btn btn-round btn-danger">Se déconnecter</button></a>';
                         
                         echo '
-                            <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($result['image']) ? $result['image'] : 'default.jpg') . '" alt="" class="user-pic user-pic-background" onclick="toggleMenu()">';
+                            <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($_SESSION['img']) ? $_SESSION['img'] : 'default.jpg') . '" alt="" class="user-pic user-pic-background" onclick="toggleMenu()">';
                         echo '<div class="sub-menu-wrap" id="subMenu">
                             <div class="sub-menu">
                                 <div class="user-info">
-                                    <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($result['image']) ? $result['image'] : 'default.jpg') . '" class="user-pic-background" alt="">
+                                    <img src="/Projet-Annuel-2i1/PA2i1/uploads/' . (isset($_SESSION['img']) ? $_SESSION['img'] : 'default.jpg') . '" class="user-pic-background" alt="">
                                     <h2>Settings</h2>
                                 </div>
                                 <hr>
