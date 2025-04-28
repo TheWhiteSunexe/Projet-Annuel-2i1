@@ -123,6 +123,22 @@ class CourseEventDAO {
     
         return true;
     }
+
+    public static function getEventsForAndroid($companyId) {
+        $db = getDatabaseConnection();
+        $query = "SELECT e.id, e.title, e.start_date AS date, 
+                         r.city, r.address
+                  FROM event e 
+                  INNER JOIN room r ON e.id_room = r.id
+                  WHERE e.id_company = :id AND e.active = 1
+                  ORDER BY e.start_date ASC";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $companyId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
     
     
 }

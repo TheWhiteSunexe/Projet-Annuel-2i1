@@ -114,4 +114,18 @@ class EventDAO {
 
         return $events;
     }
+    public static function getEmployeePlanningForAndroid($userId) {
+        $db = getDatabaseConnection();
+        $sql = "SELECT e.title, e.start_date AS date, 
+                       TIME_FORMAT(e.start_hour, '%H:%i') AS start_time, 
+                       TIME_FORMAT(e.end_hour, '%H:%i') AS end_time
+                FROM reservation r
+                INNER JOIN event e ON r.id_event = e.id
+                WHERE r.id_user = :id_user";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['id_user' => $userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    
 }
