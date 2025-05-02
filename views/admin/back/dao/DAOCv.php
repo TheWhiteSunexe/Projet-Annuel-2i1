@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '\Projet-Annuel-2i1\PA2i1\views\admin\back\dao\utils\database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/utils/database.php';
 
 class DAOCv {
     

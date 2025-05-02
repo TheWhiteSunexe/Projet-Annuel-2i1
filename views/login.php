@@ -11,6 +11,7 @@
     
     <title>Business Care</title>
       <link rel="icon" type="image/png" href="../assets/images/logoSmall.png">
+      
   </head>
   <body>
 

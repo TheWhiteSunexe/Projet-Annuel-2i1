@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetchEmployees();
 
-    // Gestion de l'ajout d'un employé via le formulaire
     document.getElementById("addEmployeeForm").addEventListener("submit", function(event) {
         event.preventDefault();
 
@@ -9,9 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             action: "add",
             name: document.getElementById("name").value,
             firstname: document.getElementById("firstname").value,
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value,
-            enterpriseId: document.getElementById("enterpriseId").value
+            email: document.getElementById("email").value
         };
 
         fetch('/Projet-Annuel-2i1/PA2i1/api/ApiEmployees.php', {
@@ -24,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let messageBox = document.getElementById("message");
             if (data.success) {
                 messageBox.innerHTML = `<p style="color: green;">${data.success}</p>`;
-                fetchEmployees(); // Rafraîchir la liste après ajout
+                fetchEmployees();
             } else {
                 messageBox.innerHTML = `<p style="color: red;">${data.error}</p>`;
             }
@@ -36,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Fonction pour récupérer et afficher les employés
 function fetchEmployees() {
     fetch('/Projet-Annuel-2i1/PA2i1/api/ApiEmployees.php')
         .then(response => response.json())
@@ -56,7 +52,6 @@ function fetchEmployees() {
                     <td>${employee.name || 'N/A'}</td>
                     <td>${employee.firstname || 'N/A'}</td>
                     <td>${employee.email || 'N/A'}</td>
-                    <td>${employee.id_enterprise || 'N/A'}</td>
                     <td>${employee.status == 1 ? "Actif" : "Suspendu"}</td>
                     <td>
                         ${employee.status == 1 

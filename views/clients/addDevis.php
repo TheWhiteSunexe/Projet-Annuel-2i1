@@ -32,25 +32,44 @@ if (!AuthMiddleware::checkAccess('clients')) {
         <div class="col-lg">
 
             <div class="jumbotron bg-white">
-            <h1 class="display-4">Création de <br> Devis<br></h1>
+            <h1 class="display-4">Création d'une <br> Demande<br></h1>
             <small><font color="red">*</font> Ces données sont obligatoires pour la création d'un devis.</small>
 
             <form action="/Projet-Annuel-2i1/PA2i1/api/ApiDevis.php" method="POST">
 
                 <div class="form-group">
-                    <label for="company_name"> Nom du devis (visible uniquement pour vous) :</label>
+                    <label for="name">Nom de la demande :</label>
                     <input type="text" name="name" id="name" class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label for="company_name"><font color="red">*</font> Titre du devis</label>
-                    <input type="text" name="title"id="title" required class="form-control">
+                    <label for="title"><font color="red">*</font> Titre de la demande :</label>
+                    <input type="text" name="title" id="title" required class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label for="company_name"><font color="red">*</font> Descrition du devis</label>
-                    <br><small>Veuillez indiquer l'évènement que vous voulez mettre en place pour vos employés</small>
-                    <textarea type="text" name="description" id="description" required class="form-control">   </textarea>
+                    <label for="description"><font color="red">*</font> Description de la demande :</label>
+                    <br><small>Veuillez indiquer l'événement que vous voulez mettre en place pour vos employés.</small>
+                    <textarea name="description" id="description" required class="form-control"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label><font color="red">*</font> S'agit-il d'un rendez-vous médical ?</label><br>
+                    <input type="checkbox" name="is_medical" id="is_medical" value="1">
+                    <label for="is_medical">Oui</label>
+                </div>
+
+                <div class="form-group">
+                    <label><font color="red">*</font> Lieu du rendez-vous :</label><br>
+                    <input type="radio" name="location" id="on_site" value="on_site" required>
+                    <label for="on_site">Locaux de l'entreprise</label><br>
+                    <input type="radio" name="location" id="business_care" value="business_care">
+                    <label for="business_care">Chez Business Care</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="capacity"><font color="red">*</font> Capacité maximale de l'événement :</label>
+                    <input type="number" name="capacity" id="capacity" class="form-control" min="1" required>
                 </div>
 
                 <div class="form-group">
@@ -59,6 +78,7 @@ if (!AuthMiddleware::checkAccess('clients')) {
 
                 <div id="error_message" style="color: red;"></div>
             </form>
+
             </div>
         </div>
     </div>

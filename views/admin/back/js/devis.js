@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
                 let statusText = '';
                 let publicationText = '';
+                let infoText = '';
             
                 const contractStatus = Number(contracts.active);
                 const contractPublication = Number(contracts.publication);
@@ -139,9 +140,40 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                         </div>
-                        
                         `;
                 }
+                infoText = `
+
+                        <button type="button" class="btn btn-success profile-button" data-bs-toggle="modal" data-bs-target="#info${contracts.id}">
+                            <i class="bi-info-circle"></i> infos
+                        </button>
+
+                        <div class="modal fade" id="info${contracts.id}" tabindex="-1" aria-labelledby="info${contracts.id}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Plus d'informations :</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h6 class="modal-text">Nom : ${contracts.name}</h6>
+                                <h6 class="modal-text">Titre de la demande : ${contracts.title}</h6>
+                                <h6 class="modal-text">Contenu : ${contracts.description || 'Non spécifié'}</h6>
+                                <h6 class="modal-text">Status de la demande : ${contracts.status == 2 ? 'Validé' : 'En attente ou refusé'}</h6>
+                                <h6 class="modal-text">Etat de publication : ${contracts.publication == 1 ? 'Publié' : 'Non publié'}</h6>
+                                <h6 class="modal-text">Nom de l'entreprise : ${contracts.entreprise}</h6>
+                                <h6 class="modal-text">Id entreprise : ${contracts.id_entreprise}</h6>
+                                <h6 class="modal-text">Nombre de personnes pour l'évènement : ${contracts.capacity}</h6>
+                                <h6 class="modal-text">Motif de refus (si existant) : ${contracts.complain || 'Aucun'}</h6>
+                                <h6 class="modal-text">Lieu de l'évènement : ${contracts.location == 1 ? 'Dans les locaux de l\'entreprise' : 'Chez Business Care'}</h6>
+                                <h6 class="modal-text">Évènement médical : ${contracts.is_medical == 1 ? 'Oui' : 'Non'}</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>`;
             
                 row.innerHTML = `
                     <td>${contracts.id}</td>
@@ -154,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${publicationText}</td>
                     <td>${acceptanceText}</td>
                     <td><button class="btn btn-primary profile-button"><i class="bi-download"></i> Télécharger</button></td>
-                    <td><button class="btn btn-success profile-button"><i class="bi-info-circle"></i> infos</button></td>
+                    <td>${infoText}</td>
                 `;
                 tableBody.appendChild(row);
             });

@@ -26,8 +26,8 @@
                         <a class="nav-link" href="room.php">Salle</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="factures.php">Factures</a> <!-- 👈 Bouton ajouté ici -->
-                    </li>
+                        <a class="nav-link" href="factures.php">Factures</a> 
+                   </li>
 
                 </ul>
             </div>

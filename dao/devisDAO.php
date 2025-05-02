@@ -3,15 +3,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/utils/databas
 
 class DevisDAO {
 
-    public static function addDevis($name, $title, $description, $id_client) {
+    public static function addDevis($name, $title, $description, $id_client, $is_medical, $location, $capacity) {
         try {
             $db = getDatabaseConnection();
-            $date = date("Y-m-d"); // Format de la date actuelle
+            $date = date("Y-m-d"); 
     
-            // Modification de la requête pour inclure toutes les colonnes
             $query = "
-                INSERT INTO contracts (name, date, id_client, title, content, complain, price, pay_status, file, status, active) 
-                VALUES (:name, :date, :id_client, :title, :content, NULL, NULL, NULL, NULL, 1, 1)
+                INSERT INTO contracts (name, date, id_client, title, content, complain, price, pay_status, file, status, active, is_medical, location, capacity) 
+                VALUES (:name, :date, :id_client, :title, :content, NULL, NULL, NULL, NULL, 1, 1, :is_medical, :location, :capacity)
             ";
     
             $stmt = $db->prepare($query);
@@ -20,6 +19,9 @@ class DevisDAO {
             $stmt->bindParam(':id_client', $id_client, PDO::PARAM_INT);
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':content', $description, PDO::PARAM_STR);
+            $stmt->bindParam(':is_medical', $is_medical, PDO::PARAM_BOOL);
+            $stmt->bindParam(':location', $location, PDO::PARAM_STR);
+            $stmt->bindParam(':capacity', $capacity, PDO::PARAM_INT);
     
             $stmt->execute();
     
@@ -29,6 +31,7 @@ class DevisDAO {
             return ['error' => 'Erreur de base de données: ' . $e->getMessage()];
         }
     }
+    
     
     
     

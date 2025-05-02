@@ -3,8 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/utils/server.
 
 function getDatabaseConnection(): PDO {
     try {
-        $host = 'localhost';
-        $db = 'PA2i1';
+        $host = 'pa2i1-mysql';
+        $db = 'pa2i1';
         $user = 'root';
         $pass = 'root';
         $port = '3306';

@@ -26,15 +26,15 @@ if (!AuthMiddleware::checkAccess('clients')) {
     <?php include('includes/header.php'); ?>
 
     <main style="padding-left: 20px;  padding-right: 20px;">
-        <h1 class="display-4">Gestion des Devis</h1>
-        <button onclick="addDevis()"class="btn btn-primary profile-button">Créer un devis</button>
+        <h1 class="display-4">Gestion des Demandes </h1>
+        <button onclick="addDevis()"class="btn btn-primary profile-button">Créer une demande</button>
     <div>     
         <div id="result">
             <table class="table table-striped mt-4">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nom du Devis</th>
+                        <th>Nom de la demande</th>
                         <th>Date</th>
                         <th>Titre</th>
                         <th>Contenu</th>

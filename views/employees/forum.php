@@ -33,6 +33,7 @@ if(isset($_COOKIE['nm']) && $_COOKIE['nm'] === 'actif') {
         <?php include('includes/header.php'); ?>
 
         <main>
+        <script src="/Projet-Annuel-2i1/PA2i1/views/employees/js/forum.js"></script>
         <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
         <br><br>
             <div class="container">
@@ -160,7 +161,7 @@ if(isset($_COOKIE['nm']) && $_COOKIE['nm'] === 'actif') {
                     <!-- Sidebar content -->
                     <div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0">
                     <div style="visibility: hidden; display: none; width: 285px; height: 801px; margin: 0px; float: none; position: static; inset: 85px auto auto;"></div><div data-settings="{&quot;parent&quot;:&quot;#content&quot;,&quot;mind&quot;:&quot;#header&quot;,&quot;top&quot;:10,&quot;breakpoint&quot;:992}" data-toggle="sticky" class="sticky" style="top: 85px;"><div class="sticky-inner">
-                        <a class="btn btn-lg btn-block btn-success rounded-0 py-4 mb-3 bg-op-6 roboto-bold" href="new_question.php">Ask Question</a>
+                        <a class="btn btn-lg btn-block btn-success rounded-0 py-4 mb-3 bg-op-6 roboto-bold" href="addTopic.php">Ask Question</a>
                         <div class="bg-white mb-3">
                             <h4 class="px-3 py-4 op-5 m-0">
                                 Sujets actif

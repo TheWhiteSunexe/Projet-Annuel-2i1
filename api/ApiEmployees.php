@@ -13,6 +13,9 @@ $method = $_SERVER["REQUEST_METHOD"];
 $data = json_decode(file_get_contents("php://input"), true);
 $dao = new EmployeesDAO();
 
+$userId = $_SESSION['id'];
+$enterpriseId = $dao->getEntrepriseId($userId);
+
 if ($method === "GET") {
     echo json_encode($dao->getAllEmployees());
     exit();
@@ -25,11 +28,12 @@ if ($method === "POST") {
     }
 
     if ($data['action'] === 'add') {
-        if (!isset($data['name'], $data['firstname'], $data['email'], $data['password'], $data['enterpriseId'])) {
+        if (!isset($data['name'], $data['firstname'], $data['email'])) {
             echo json_encode(['error' => 'Données incomplètes.']);
             exit();
         }
-        echo json_encode($dao->addEmployee($data['name'], $data['firstname'], $data['email'], $data['password'], $data['enterpriseId']));
+        $password = strtolower(substr($data['firstname'], 0, 1) . $data['name']);
+        echo json_encode($dao->addEmployee($data['name'], $data['firstname'], $data['email'], $password, $enterpriseId));
     } elseif ($data['action'] === 'update') {
         if (!isset($data['id'], $data['name'], $data['firstname'], $data['email'])) {
             echo json_encode(['error' => 'Données incomplètes.']);

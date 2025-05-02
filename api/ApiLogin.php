@@ -68,6 +68,21 @@ $_SESSION['role'] = $user['role'];
 $_SESSION['id'] = $users['id'];
 $_SESSION['img'] = $users['img'];
 
+if($user['role'] == 'clients'){
+
+$pricing = ClientVerifySubscription($_SESSION['id']);
+
+if (!$pricing) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Une erreur interne est survenue, erreur de récupération au niveau de l\'abonnement.']);
+    exit;
+}
+
+$_SESSION['subscription'] = $pricing['subscription'];
+$_SESSION['exp_date_subscription'] = $pricing['exp_date'];
+
+}
+
 echo json_encode([
     'token' => $tokenHashed,
     'role' => $user['role'], 

@@ -7,7 +7,7 @@ class DevisDAO {
         try {
             $db = getDatabaseConnection();
             $query = "
-                SELECT c.id, c.name, c.date, c.content AS description, c.status, c.active, c.title, c.publication, cl.name AS entreprise, cl.id AS id_entreprise
+                SELECT c.id, c.name, c.date, c.content AS description, c.status, c.active, c.title, c.publication, cl.name AS entreprise, cl.id AS id_entreprise, c.capacity, c.complain, c.location, c.is_medical
                 FROM contracts c
                 INNER JOIN clients cl ON cl.id = c.id_client WHERE c.status < 4
             ";

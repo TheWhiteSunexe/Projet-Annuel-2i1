@@ -1,9 +1,20 @@
+document.addEventListener("DOMContentLoaded", function () {
+    fetchClients();
+});
+
 function fetchClients() {
     fetch('/Projet-Annuel-2i1/PA2i1/views/admin/back/api/APIClient.php')
         .then(response => response.json())
-        .then(clients => {
+        .then(data => {
+            const clients = Array.isArray(data) ? data : (Array.isArray(data.clients) ? data.clients : []);
             const tableBody = document.querySelector('#clients-table tbody');
             tableBody.innerHTML = '';
+
+            if (!clients.length) {
+                console.warn("Aucun client trouvé ou mauvaise structure JSON :", data);
+                tableBody.innerHTML = '<tr><td colspan="7">Aucun client disponible.</td></tr>';
+                return;
+            }
 
             clients.forEach(client => {
                 let row = document.createElement('tr');
@@ -38,11 +49,6 @@ function fetchClients() {
         })
         .catch(error => console.error("Erreur lors de la récupération des clients :", error));
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    fetchClients();
-});
-
 
 function updateContractStatus(clientId, status) {
     fetch('/Projet-Annuel-2i1/PA2i1/views/admin/back/api/APIClient.php', {

@@ -8,7 +8,7 @@ class ForumDAO {
         $db = getDatabaseConnection();
 
         // Récupérer les sujets du forum
-        $query = "SELECT titre, date_creation, utilisateur_id, message_id FROM forum_messages ORDER BY date_creation DESC";
+        $query = "SELECT titre, date_creation, utilisateur_id, message_id, contenu FROM forum_messages ORDER BY date_creation DESC";
         $stmt = $db->prepare($query);
         $stmt->execute();
         $topics = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -44,6 +44,21 @@ class ForumDAO {
 
         return $topics;
     }
+
+    public static function addTopic($id, $title) {
+        $db = getDatabaseConnection();
+    
+        $query = "INSERT INTO forum_messages (utilisateur_id, titre, contenu, date_creation) 
+                  VALUES (:id, :title, NULL, NOW())";
+        $stmt = $db->prepare($query);
+        $success = $stmt->execute([
+            ':id' => $id,
+            ':title' => $title
+        ]);
+    
+        return $success;
+    }
+    
 }
 class ForumMessageDAO {
     

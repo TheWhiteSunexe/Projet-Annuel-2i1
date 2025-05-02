@@ -137,5 +137,17 @@ class EmployeesDAO {
             return ['error' => 'Erreur lors de la réactivation : ' . $e->getMessage()];
         }
     }
+
+    public function getEntrepriseId($id) {
+        try {
+            $query = "SELECT id FROM clients WHERE id_user = :id";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return ['success' => 'Employé suspendu avec succès !'];
+        } catch (PDOException $e) {
+            return ['error' => 'Erreur lors de la suspension : ' . $e->getMessage()];
+        }
+    }
 }
 ?>

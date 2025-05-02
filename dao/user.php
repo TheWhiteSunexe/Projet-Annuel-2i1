@@ -74,6 +74,28 @@ function findUsersByCredentials($username, $password) {
     return null;
 }
 
+
+function ClientVerifySubscription($id) {
+    $connection = getDatabaseConnection();
+    $sql = "
+        SELECT 
+            subscription,
+            exp_date
+            FROM clients
+            WHERE id_user = :id
+        ";
+
+    $query = $connection->prepare($sql);
+    $res = $query->execute([
+        'id' => $id
+    ]);
+
+    if ($res && $pricing = $query->fetch(PDO::FETCH_ASSOC)) {
+        return $pricing;
+    }
+
+    return null;
+}
 function resetPasswordByEmail($email, $Password) {
     $connection = getDatabaseConnection();
 
