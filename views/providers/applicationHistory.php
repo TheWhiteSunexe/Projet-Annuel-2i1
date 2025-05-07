@@ -26,12 +26,12 @@ if (!AuthMiddleware::checkAccess('providers')) {
     <?php include('includes/header.php'); ?>
 
     <main style="padding-left: 20px;  padding-right: 20px;">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
         <h1 class="display-4">Gestion des Candidatures</h1> 
     <div>     
-    <a href="applicationHistory.php" class="btn btn-primary profile-button">
-        <i class="bi bi-clock-history"></i> Historique des candidatures
+    <a href="application.php" class="btn btn-primary profile-button">
+        <i class="bi bi-chevron-left"></i> Revenir aux offres
     </a>
+
         <div id="result">
             <table class="table table-striped mt-4">
                 <thead>
@@ -52,5 +52,5 @@ if (!AuthMiddleware::checkAccess('providers')) {
     </div>
 </main>
     </body>
-    <script src="js/application.js"></script>
+    <script src="js/applicationHistory.js"></script>
 </html>

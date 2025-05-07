@@ -17,7 +17,9 @@ if (!AuthMiddleware::checkAccess('providers')) {
     header('Location: /Projet-Annuel-2i1/PA2i1/views/login.php');
     exit();
 }
-
+if($_SESSION['statut'] != 2){
+    header('Location: /Projet-Annuel-2i1/PA2i1/views/providers/home.php?message=Unauthorized');
+}
 // $router->dispatch();
 ?>
 <!DOCTYPE HTML>

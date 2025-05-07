@@ -21,7 +21,7 @@ if (!AuthMiddleware::checkAccess('admin')) {
 <html lang="fr">
 
 <head>
-    <?php include('../includes/head.php'); ?>
+    <?php include('includes/head.php'); ?>
     <link href="../../assets/styles/accountHome.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

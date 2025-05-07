@@ -1,6 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/middlewares/AuthMiddleware.php';  
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/middlewares/ProvidersMiddleware.php';  
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/models/UserModel.php'; 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/Controllers/AuthController.php'; 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/routes/web.php';
@@ -9,12 +10,15 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 use Middleware\AuthMiddleware;
+use Middleware\ProvidersMiddleware;
 use Controllers\AuthController;
 if (!AuthMiddleware::checkAccess('providers')) {
     header('Location: /Projet-Annuel-2i1/PA2i1/views/login.php');
     exit();
 }
-
+if(!isset($_SESSION['statut'])){
+ProvidersMiddleware::checkStatutProviders();
+}
 ?>
 
 <!DOCTYPE html>

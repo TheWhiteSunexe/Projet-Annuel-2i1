@@ -17,7 +17,7 @@ function ruptureContrat($providerId) {
 
 function engagerContrat($providerId) {
     $dao = new DAOProvider();
-    return $dao->updateActiveStatus($providerId, 1);
+    return $dao->updateActiveStatus($providerId, 2);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

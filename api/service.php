@@ -1,25 +1,16 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/tpApi/VikingsAPI/api/utils/server.php';
-//Inutile pour le moment (ancien projet)
-function verifyViking($viking): bool {
-    $name = trim($viking['name']);
-    if (strlen($name) < 3) {
-        returnError(412, 'Name must be at least 3 characters long');
-    }
-
-    $health = intval($viking['health']);
-    if ($health < 1) {
-        returnError(412, 'Health must be a positive and non zero number');
-    }
-
-    $attack = intval($viking['attack']);
-    if ($attack < 1) {
-        returnError(412, 'Attack must be a positive and non zero number');
-    }
-
-    $defense = intval($viking['defense']);
-    if ($defense < 1) {
-        returnError(412, 'Defense must be a positive and non zero number');
-    }
-    return true;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Projet-Annuel-2i1/PA2i1/dao/UserDAO.php';
+
+function checkProviders() {
+
+$userId = $_SESSION['id'];
+$statutArray = DAOUser::checkStatutProvider($userId);
+$statut = $statutArray['statut'];
+$_SESSION['statut'] = $statut;
+
+}
+

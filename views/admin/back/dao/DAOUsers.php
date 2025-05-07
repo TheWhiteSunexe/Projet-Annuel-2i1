@@ -51,7 +51,7 @@ SELECT DISTINCT u.id, u.name, u.firstname, u.email, u.username, u.active,
         ELSE 'unknown'
     END AS role
 FROM users u
-INNER JOIN employees e ON u.id = e.id_employees
+INNER JOIN employees e ON u.id = e.id_users
 WHERE e.id_enterprise = :companyId;
 
 

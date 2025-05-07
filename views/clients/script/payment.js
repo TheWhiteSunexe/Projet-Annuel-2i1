@@ -1,4 +1,4 @@
-const stripe = Stripe('pk_test_51Qn1TEF9UK6PhOmTjvDNhWuXTIG2yvOPeVszJOFtKxPZlexybMKVqjQ614mFaRv12B1ldjljU5ayyBUDm8J7rkuP00KfmSEiNl');  // Remplace par ta clé publique Stripe
+const stripe = Stripe('');  // Remplace par ta clé publique Stripe
 const elements = stripe.elements();
 
 const card = elements.create('card'); // Crée le champ pour la carte

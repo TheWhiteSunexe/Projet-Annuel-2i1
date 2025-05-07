@@ -6,7 +6,7 @@ class DAOUser {
         try {
             $pdo = getDatabaseConnection();
             $query = "SELECT u.name, u.firstname, u.email, e.phone, e.link, c.name AS company_name
-                      FROM users u INNER JOIN employees e ON e.id_employees = u.id INNER JOIN clients c ON c.id = e.id_enterprise
+                      FROM users u INNER JOIN employees e ON e.id_users = u.id INNER JOIN clients c ON c.id = e.id_enterprise
                       WHERE u.id = :userId";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
@@ -44,6 +44,19 @@ class DAOUser {
             return "Erreur DAO : " . $e->getMessage();
         }
     }
+    public static function checkStatutProvider($userId) {
+        try {
+            $pdo = getDatabaseConnection();
+            $query = "SELECT statut FROM providers
+                      WHERE user_id = :userId";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return "Erreur DAO : " . $e->getMessage();
+        }
+    }
     public static function updateUserImage($userId, $imageUrl) {
         $pdo = getDatabaseConnection();
         $stmt = $pdo->prepare("UPDATE users SET image = ? WHERE id = ?");
@@ -62,7 +75,7 @@ class DAOUser {
     }
     public static function updateEmployees($userId, $phone, $linkedin) {
         $pdo = getDatabaseConnection();
-        $stmt = $pdo->prepare("UPDATE employees SET phone = ?, link = ? WHERE id_employees = ?");
+        $stmt = $pdo->prepare("UPDATE employees SET phone = ?, link = ? WHERE id_users = ?");
         return $stmt->execute([ $phone, $linkedin, $userId]);
     }
     public static function updateClients($userId, $name, $firstname, $company_name, $description, $activity_sector, $legal_form, $siret, $country, $address, $postal_code, $phone, $email, $link) {

@@ -13,9 +13,9 @@ class EmployeesDAO {
     public function getAllEmployees() {
         try {
             $query = "
-                SELECT u.id, u.name, u.firstname, u.email, e.id_enterprise, e.status, e.id_employees
+                SELECT u.id, u.name, u.firstname, u.email, e.id_enterprise, e.status, e.id_users
                 FROM users u
-                INNER JOIN employees e ON e.id_employees = u.id;
+                INNER JOIN employees e ON e.id_users = u.id;
             ";
             $stmt = $this->pdo->prepare($query);
             $stmt->execute();
@@ -54,7 +54,7 @@ class EmployeesDAO {
                     return ['error' => 'Cet utilisateur est déjà un client ou un prestataire.'];
                 }
                 // Vérifier s'il est déjà employé dans cette entreprise
-                $checkEmployeeQuery = "SELECT id FROM employees WHERE id_employees = :userId AND id_enterprise = :enterpriseId";
+                $checkEmployeeQuery = "SELECT id FROM employees WHERE id_users = :userId AND id_enterprise = :enterpriseId";
                 $stmt = $this->pdo->prepare($checkEmployeeQuery);
                 $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
                 $stmt->bindParam(':enterpriseId', $enterpriseId, PDO::PARAM_INT);
@@ -63,7 +63,7 @@ class EmployeesDAO {
                     return ['error' => 'Cet utilisateur est déjà employé dans cette entreprise.'];
                 }
                 // Ajouter l'utilisateur existant en tant qu'employé
-                $insertEmployeeQuery = "INSERT INTO employees (id_employees, id_enterprise, status) VALUES (:userId, :enterpriseId, 1)";
+                $insertEmployeeQuery = "INSERT INTO employees (id_users, id_enterprise, status) VALUES (:userId, :enterpriseId, 1)";
                 $stmt = $this->pdo->prepare($insertEmployeeQuery);
                 $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
                 $stmt->bindParam(':enterpriseId', $enterpriseId, PDO::PARAM_INT);
@@ -73,7 +73,7 @@ class EmployeesDAO {
                 // L'utilisateur n'existe pas : créer le nouvel utilisateur
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 // On crée l'utilisateur avec id_employees = 1 (pour signifier qu'il s'agit d'un employé) et active = 1
-                $insertUserQuery = "INSERT INTO users (name, firstname, email, password, id_employees, active) 
+                $insertUserQuery = "INSERT INTO users (name, firstname, email, password, id_users, active) 
                                     VALUES (:name, :firstname, :email, :password, 1, 1)";
                 $stmt = $this->pdo->prepare($insertUserQuery);
                 $stmt->bindParam(':name', $name, PDO::PARAM_STR);
@@ -84,7 +84,7 @@ class EmployeesDAO {
                 $userId = $this->pdo->lastInsertId();
 
                 // Associer ce nouvel utilisateur comme employé
-                $insertEmployeeQuery = "INSERT INTO employees (id_employees, id_enterprise, status) VALUES (:userId, :enterpriseId, 1)";
+                $insertEmployeeQuery = "INSERT INTO employees (id_users, id_enterprise, status) VALUES (:userId, :enterpriseId, 1)";
                 $stmt = $this->pdo->prepare($insertEmployeeQuery);
                 $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
                 $stmt->bindParam(':enterpriseId', $enterpriseId, PDO::PARAM_INT);
@@ -115,7 +115,7 @@ class EmployeesDAO {
     // Suspendre un employé (status = 0)
     public function suspendEmployee($id) {
         try {
-            $query = "UPDATE employees SET status = 0 WHERE id_employees = :id";
+            $query = "UPDATE employees SET status = 0 WHERE id_users = :id";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -128,7 +128,7 @@ class EmployeesDAO {
     // Réactiver un employé (status = 1)
     public function reactivateEmployee($id) {
         try {
-            $query = "UPDATE employees SET status = 1 WHERE id_employees = :id";
+            $query = "UPDATE employees SET status = 1 WHERE id_users = :id";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();

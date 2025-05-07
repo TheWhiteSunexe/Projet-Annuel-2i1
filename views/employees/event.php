@@ -80,7 +80,48 @@ if (!AuthMiddleware::checkAccess('employees')) {
                     </div>
                 </div>
             </div>
+            <br>
+            <button type="button" class="btn btn-primary profile-button" data-bs-toggle="modal" data-bs-target="#request">
+                <i class="bi bi-clipboard2-plus"></i> Demande d'évènement
+            </button>
 
+            <button type="button" class="btn btn-warning profile-button" data-bs-toggle="modal" data-bs-target="#rating">
+                <i class="bi bi-star"></i> Noter les évènements
+            </button>
+
+            <div class="modal fade" id="request" tabindex="-1" aria-labelledby="request" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="/Projet-Annuel-2i1/PA2i1/api/apiNote.php?action=create" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title">Demande d'évènement à votre employeur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                        <h6 class="modal-text mb-3">Formulaire :</h6>
+
+                        <div class="mb-3">
+                            <label for="note-title" class="form-label">Titre</label>
+                            <input type="text" class="form-control" id="note-title" name="title" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="note-description" class="form-label">Description</label>
+                            <textarea class="form-control" id="note-description" name="description" rows="4" required></textarea>
+                        </div>
+                        </div>
+
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            <br><br>
             <div class="evt-tab-inner text-center">
                 <ul class="nav nav-tabs" id="eventDateTabs" role="tablist">
                 </ul>

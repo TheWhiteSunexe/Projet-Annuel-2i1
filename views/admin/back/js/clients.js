@@ -34,13 +34,13 @@ function fetchClients() {
                     <td>${client.firstname}</td>
                     <td>${client.email}</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="Utilisateurs.php?companyId=${client.company_id}" target="_blank"><i class="bi-person-lines-fill"></i>  ${client.company_name}</a>
+                        <a class="btn btn-primary btn-sm" href="Utilisateurs.php?companyId=${client.company_id}"><i class="bi-person-lines-fill"></i>  ${client.company_name}</a>
                     </td>
                     <td>
                         ${actionButton}
                     </td>
                     <td>
-                        <a class="btn btn-success btn-sm" href="users-profile.php?id=${client.id}" target="_blank"><i class="bi-person-badge"></i> Info</a>
+                        <a class="btn btn-success btn-sm" href="users-profile.php?id=${client.id}"><i class="bi-person-badge"></i> Info</a>
                     </td>
                 `;
 

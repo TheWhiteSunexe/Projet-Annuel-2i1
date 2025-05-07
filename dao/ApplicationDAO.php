@@ -53,14 +53,66 @@ class ApplicationDAO {
             $db = getDatabaseConnection();
             
             $query = "
-                SELECT c.id, c.name, c.date, c.content AS description, c.title
+                SELECT 
+                    c.id, 
+                    c.name, 
+                    c.date, 
+                    c.content AS description, 
+                    c.title, 
+                    c.id_event, 
+                    e.start_date, 
+                    e.end_date, 
+                    e.start_hour, 
+                    e.end_hour, 
+                    e.participant, 
+                    r.name AS roomName, 
+                    r.address, 
+                    r.country, 
+                    r.city, 
+                    r.postal_code
+                FROM contracts c
+                LEFT JOIN application a 
+                    ON c.id = a.id_contract AND a.id_provider = :id_provider
+                INNER JOIN event e 
+                    ON e.id = c.id_event
+                INNER JOIN room r 
+                    ON e.id_room = r.id
+                WHERE 
+                    c.status = 3
+                    AND c.publication = 1
+                    AND c.active > 1
+                    AND a.id IS NULL
+
+            ";
+    
+            $stmt = $db->prepare($query);
+    
+            if ($id_provider === null) {
+                error_log('Erreur : id_provider est NULL');
+                return ['error' => 'Aucun fournisseur trouvé pour cet utilisateur.'];
+            }
+    
+            $stmt->bindParam(':id_provider', $id_provider, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log('Database Error: ' . $e->getMessage());
+            return ['error' => 'Une erreur interne est survenue.'];
+        }
+    }
+
+    public static function getAllApplicationHistory($id_provider) {
+        try {
+            $db = getDatabaseConnection();
+            
+            $query = "
+                SELECT a.id, c.name, c.date, c.content AS description, c.title, a.active, a.price
             FROM contracts c 
             LEFT JOIN application a 
             ON c.id = a.id_contract AND a.id_provider = :id_provider
-            WHERE c.status = 3
-            AND c.publication = 1 
-            AND c.active > 1
-            AND a.id IS NULL
+            WHERE a.id_provider = :id_provider
+            AND (c.id_application IS NULL OR a.id != c.id_application)
             ";
     
             $stmt = $db->prepare($query);

@@ -20,7 +20,7 @@ class CourseEventDAO {
         $db = getDatabaseConnection();
         $query = "SELECT id_enterprise
                   FROM employees 
-                  WHERE id_employees = :id";
+                  WHERE id_users = :id";
         $stmt = $db->prepare($query); 
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

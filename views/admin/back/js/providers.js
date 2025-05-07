@@ -8,13 +8,16 @@ function fetchProviders() {
             providers.forEach(provider => {
                 let row = document.createElement('tr');
 
-                const activeStatus = Number(provider.active); 
+                const activeStatus = Number(provider.statut); 
 
                 let actionButton = '';
-                if (activeStatus === 1) {
+                if (activeStatus === 2) {
                     actionButton = `<button class="btn btn-danger btn-sm" onclick="updateContractStatus(${provider.id}, 'rupture')"><i class="bi-journal-x"></i> Rupture de contrat</button>`;
                 } else if (activeStatus === 0) {
                     actionButton = `<button class="btn btn-success btn-sm" onclick="updateContractStatus(${provider.id}, 'engager')"><i class="bi-journal-check"></i> Engager</button>`;
+                }else if (activeStatus === 1) {
+                    actionButton = `<button class="btn btn-success btn-sm" onclick="updateContractStatus(${provider.id}, 'engager')"><i class="bi-journal-check"></i> Engager</button>
+                                    <button class="btn btn-danger btn-sm" onclick="updateContractStatus(${provider.id}, 'rupture')"><i class="bi-journal-x"></i> Rupture de contrat</button>`;
                 }
 
                 row.innerHTML = `

@@ -24,12 +24,6 @@ class AuthMiddleware {
             return true;
         }
 
-        // if ($_SESSION['role'] == 'admin') {
-        //     return true;
-        // }
         return false;
     }
 }
-
-
-

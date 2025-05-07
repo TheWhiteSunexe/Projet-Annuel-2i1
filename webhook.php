@@ -1,7 +1,7 @@
 <?php
 // require 'vendor/autoload.php';
 
-// \Stripe\Stripe::setApiKey('
+// \Stripe\Stripe::setApiKey('');
 
 // $endpoint_secret = ' ';
 

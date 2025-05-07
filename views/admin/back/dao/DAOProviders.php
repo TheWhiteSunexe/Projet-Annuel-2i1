@@ -12,7 +12,7 @@ class DAOProvider {
     public function getAllProviders() {
         try {
             $query = "
-                SELECT u.id, u.name, u.firstname, u.email, p.active
+                SELECT u.id, u.name, u.firstname, u.email, p.active, p.statut
                 FROM users u
                 INNER JOIN providers p ON p.user_id = u.id;
             ";
@@ -30,7 +30,7 @@ class DAOProvider {
         try {
             $query = "
                 UPDATE providers 
-                SET active = :active
+                SET statut = :active
                 WHERE user_id = :providerId
             ";
 
