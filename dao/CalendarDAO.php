@@ -114,16 +114,26 @@ class EventDAO {
 
         return $events;
     }
-    public static function getEmployeePlanningForAndroid($userId) {
+    public static function getEmployeePlanningForAndroid(int $userId): array {
         $db = getDatabaseConnection();
-        $sql = "SELECT e.title, e.start_date AS date, 
-                       TIME_FORMAT(e.start_hour, '%H:%i') AS start_time, 
-                       TIME_FORMAT(e.end_hour, '%H:%i') AS end_time
-                FROM reservation r
-                INNER JOIN event e ON r.id_event = e.id
-                WHERE r.id_user = :id_user";
+
+        $sql = "
+            SELECT 
+                e.title,
+                DATE_FORMAT(e.start_date, '%Y-%m-%d')     AS date,
+                TIME_FORMAT(e.start_hour, '%H:%i')        AS start_time,
+                TIME_FORMAT(e.end_hour,   '%H:%i')        AS end_time
+            FROM reservation r
+            INNER JOIN event e   ON r.id_event = e.id
+            WHERE r.id_user = :uid
+              AND e.active = 1
+            ORDER BY e.start_date, e.start_hour
+        ";
+
         $stmt = $db->prepare($sql);
-        $stmt->execute(['id_user' => $userId]);
+        $stmt->bindParam(':uid', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
